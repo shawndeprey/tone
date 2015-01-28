@@ -26,29 +26,24 @@ public class Player : MonoBehaviour
     
     private Vector2 movement;                           // Temp variable to hold the current horizontal and vertical movement of the player
     private float horizontal, vertical;                 // Temp variables to hold either horizontal or vertical movement base values
-    private byte hFacing, vFacing, takeoffDirection;    // Values storing the current horizontal, vertical and jump takeoff directions
+    private Direction hFacing, vFacing, takeoffDirection;    // Values storing the current horizontal, vertical and jump takeoff directions
                                                         // hFacing: 0 = left, 1 = right
                                                         // vFacing: 0 = none, 2 = up, 3 = down
                                                         // takeoffDirection: 0 = left, 1 = right
-    private byte left, right, up, down;                 // Values for cardinal direction value definitions
+
+    private enum Direction { Left, Right, Up, Down };   // Values for cardinal direction value definitions
     private Animator anim;                              // Value holding the players animation object for easy editing later
     private int currentAnimation = 1;                   // Current animation with idle right facing set by default
 
     void Start()
     {
-        // Set up our 4 cardinal direction values
-        left = 0;
-        right = 1;
-        up = 2;
-        down = 3;
-
         // Set base values for all of our variables
         jumpSpeed = maxJumpSpeed;
         jumpHeight = maxJumpHeight;
         jumpDeceleration = minJumpDeceleration;
         linearDrag = maxLinearDrag;
-        hFacing = 1;
-        vFacing = 0; 
+        hFacing = Direction.Right;
+        vFacing = Direction.Left;
         takeoffDirection = hFacing;
         anim = GetComponent<Animator>();
     }
@@ -61,10 +56,10 @@ public class Player : MonoBehaviour
 
         // Set the horizontal direction the player is currently facing
         if(horizontal < 0){
-            hFacing = 0;
+            hFacing = Direction.Left;
         } else
         if(horizontal > 0){
-            hFacing = 1;
+            hFacing = Direction.Right;
         }
 
         // Calculate the current horizontal and vertical movements based on the players grounded state
@@ -144,7 +139,7 @@ public class Player : MonoBehaviour
                 // was even partially off, high precision jumps would be hard to predict for the player
                 if(jumpHeight - tempJump < 0f)
                 {
-                    tempJump = tempJump - jumpHeight;
+                    tempJump -= jumpHeight;
                 }
                 
                 // Set the vertical movement value
@@ -180,7 +175,7 @@ public class Player : MonoBehaviour
 
                 // If the player reversed their direction while in the air then ensure we change to a slower in-air horizontal
                 // move speed until the player touches the ground again. Changing the takeoff direction ensures that this happens.
-                takeoffDirection = 2;
+                takeoffDirection = Direction.Up;
                 horizontal = horizontal * (tempAirMoveSpeed / airMoveSpeedOffset);
             }
         }
@@ -214,10 +209,10 @@ public class Player : MonoBehaviour
     void CalculateAndSetCurrentAnimation()
     {
         // Calculate the animation which should play based on the players current state
-        if(hFacing == left){
+        if(hFacing == Direction.Left){
             currentAnimation = 0;
         } else
-        if(hFacing == right){
+        if(hFacing == Direction.Right){
             currentAnimation = 1;
         }
 
