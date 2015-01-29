@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Player : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     private float moveSpeed = 1.5f;                     // Horizontal movement speed
     private float airMoveSpeed = 0.6f;                  // Horizontal air movement speed when moving opposite to takeoff facing
