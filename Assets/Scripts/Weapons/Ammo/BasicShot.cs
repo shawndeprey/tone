@@ -7,9 +7,4 @@ public class BasicShot : Projectile
         damage = 1;
         lifetime = 0.25f;
     }
-
-    void OnEnable()
-    {
-        ProjectilePool.Instance.Recycle(this.gameObject, lifetime);
-    }
 }
