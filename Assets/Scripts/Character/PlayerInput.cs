@@ -19,14 +19,14 @@ public class PlayerInput : MonoBehaviour
         {
             if(primaryWeapon != null && primaryWeapon.CanAttack)
             {
-                Vector2 direction;
-                direction.x = Input.GetAxis("Horizontal");
-                direction.x = direction.x < 0f ? -1f : direction.x > 0f ? 1f : 0f;
+                Vector2 direction = Vector2.zero;
                 direction.y = Input.GetAxis("Vertical");
                 direction.y = direction.y < 0f ? -1f : direction.y > 0f ? 1f : 0f;
 
                 if (direction.y == 0.0f)
                 {
+                    direction.x = Input.GetAxis("Horizontal");
+                    direction.x = direction.x < 0f ? -1f : direction.x > 0f ? 1f : 0f;
                     if (direction.x == 0.0f)
                     {
                         direction = lastDirection;   

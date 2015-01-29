@@ -147,7 +147,6 @@ public class ProjectilePool : MonoBehaviour
     IEnumerator RecycleObject(GameObject go, float seconds)
     {
         yield return new WaitForSeconds(seconds);
-        
         Recycle(go);
     }
 
