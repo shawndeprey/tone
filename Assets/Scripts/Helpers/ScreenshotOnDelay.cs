@@ -6,7 +6,7 @@ public class ScreenshotOnDelay : MonoBehaviour
 
     public void SetTimer(float time, string path)
     {
-        StartCoroutine(Capture(time, path));
+        //StartCoroutine(Capture(time, path));
     }
 
     IEnumerator Capture(float time, string path)

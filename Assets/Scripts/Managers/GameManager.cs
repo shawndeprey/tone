@@ -28,13 +28,6 @@ public class GameManager : MonoBehaviour
         }
 
         savePath = Application.persistentDataPath + "/";
-        GenerateSettingsFile();
-    }
-
-    void Start()
-    {
-        LoadSettings();
-        SaveSettings();
     }
 
     public void Pause()
@@ -57,53 +50,89 @@ public class GameManager : MonoBehaviour
         Application.LoadLevel(Application.loadedLevel);
     }
 
-    // Saving
+    // Saving and Loading stuff
+    public void GenerateNewSaveFile(int gameSave)
+    {
+        // Creates the settings file if it doesn't exist yet
+        string fileName = "saveData_" + gameSave.ToString() + ".tone";
+        if (!File.Exists(savePath + fileName))
+        {
+            saveData = new JSONClass();
+            // Player Data
+            saveData["playerData"]["currentLevel"].AsInt = gameSave;
+
+            // Graphics
+            saveData["settings"]["graphics"]["fullscreen"].AsBool = true;
+
+            // Audio
+            saveData["settings"]["audio"]["masterVolume"].AsFloat = 1f;
+            saveData["settings"]["audio"]["sfxVolume"].AsFloat = 1f;
+            saveData["settings"]["audio"]["bgmVolume"].AsFloat = 1f;
+
+            // Game Settings
+            saveData["settings"]["gameSettings"]["test"].AsInt = 1;
+
+            SaveToFile(fileName);
+        }
+        else
+        {
+            Debug.LogError("Save file: " + fileName + " already exists!");
+        }
+    }
+
     public void SaveGame(int gameSave)
     {
-        string fileName = "saveData.tone";
+        string fileName = "saveData_" + gameSave.ToString() + ".tone";
         saveData = new JSONClass();
-        saveData["save_" + gameSave.ToString()]["testSetting"].AsFloat = 0.5f;
+        saveData["playerData"]["currentLevel"].AsInt = gameSave;
 
         SaveToFile(fileName);
-        Debug.Log("Game Saved");
     }
 
     public void LoadGame(int gameSave)
     {
-        string fileName = "saveData.tone";
+        string fileName = "saveData_" + gameSave.ToString() + ".tone";
         saveData = (JSONClass)JSONNode.Parse(LoadFromFile(fileName));
-        Debug.Log(saveData["save_" + gameSave.ToString()]["testSetting"].AsFloat);
+        
+        Application.LoadLevel(saveData["playerData"]["currentLevel"].AsInt);
     }
 
-    public void SaveSettings()
+    public void SaveSettings(int gameSave)
     {
-        string fileName = "settings.tone";
+        string fileName = "saveData_" + gameSave.ToString() + ".tone";
         saveData = new JSONClass();
-        saveData["settings"]["testSetting"].AsFloat = 0.5f;
+        // Graphics
+        saveData["settings"]["graphics"]["fullscreen"].AsBool = true;
+
+        // Audio
+        saveData["settings"]["audio"]["masterVolume"].AsFloat = 1f;
+        saveData["settings"]["audio"]["sfxVolume"].AsFloat = 1f;
+        saveData["settings"]["audio"]["bgmVolume"].AsFloat = 1f;
+
+        // Game Settings
+        saveData["settings"]["gameSettings"]["test"].AsInt = 1;
 
         SaveToFile(fileName);
     }
 
-    private void LoadSettings()
+    public void SetNewLoadGameButtons()
     {
-        string fileName = "settings.tone";
-        saveData = (JSONClass)JSONNode.Parse(LoadFromFile(fileName));
-        Debug.Log(saveData["settings"]["testSetting"].AsFloat);
+        for(int i = 1; i < 4; i++)
+        {
+            string fileName = "saveData_" + i + ".tone";
+            if (File.Exists(savePath + fileName))
+            {
+                MenuManager.Instance.SetNewLoadGameButton(i);
+            }
+        }
     }
 
-    private void GenerateSettingsFile()
+    private void LoadSettings(int gameSave)
     {
-        // Creates the settings file if it doesn't exist yet
-        string fileName = "settings.tone";
-        if (!File.Exists(savePath + fileName))
-        {
-            saveData = new JSONClass();
-            saveData["audioSettings"]["masterVolume"].AsFloat = 1f;
-            saveData["audioSettings"]["sfxVolume"].AsFloat = 1f;
-            saveData["audioSettings"]["bgmVolume"].AsFloat = 1f;
-
-            SaveToFile(fileName);
-        }
+        string fileName = "saveData_" + gameSave.ToString() + ".tone";
+        saveData = (JSONClass)JSONNode.Parse(LoadFromFile(fileName));
+        // TODO: Actually put the loaded data somewhere
+        Debug.Log(saveData["settings"]["audio"]["masterVolume"].AsFloat);
     }
 
     private void SaveToFile(string fileName)

@@ -198,12 +198,18 @@ public class PlayerMovement : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D other)
     {
-        isGrounded = true;
+        if(!other.isTrigger && other.tag == "Level")
+        {
+            isGrounded = true;
+        }
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        isGrounded = false;
+        if (!other.isTrigger && other.tag == "Level")
+        {
+            isGrounded = false;
+        }
     }
 
     void CalculateAndSetCurrentAnimation()
