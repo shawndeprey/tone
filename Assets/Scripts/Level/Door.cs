@@ -7,7 +7,9 @@ public class Door : MonoBehaviour {
     void OnTriggerStay2D(Collider2D other)
     {
         if(other.gameObject.tag == "Player"){
-            Application.LoadLevel(sceneName);
+            if(Input.GetButton("Action")){
+                Application.LoadLevel(sceneName);
+            }
         }
     }
 }
