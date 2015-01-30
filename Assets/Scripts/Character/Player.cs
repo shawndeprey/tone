@@ -26,7 +26,6 @@ public class Player : MonoBehaviour
 
     private void Death()
     {
-        Debug.Log("Game Over");
         Application.LoadLevel(Application.loadedLevel);
     }
 }
