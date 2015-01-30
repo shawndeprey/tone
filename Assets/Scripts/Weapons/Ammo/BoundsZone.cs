@@ -2,7 +2,7 @@
 
 public class BoundsZone : MonoBehaviour
 {
-	void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         Projectile projectile = other.gameObject.GetComponent<Projectile>();
 
