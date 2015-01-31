@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     private float maxLinearDrag = 13f;                  // Maximum amount of linear drag and also the grounded baseline for it
     private float minLinearDrag = 6f;                   // Minimum amound of linear drag allowed
     private float fallAcceleration = 0.4f;              // Value used to offset the player's linear drag as he is falling
-    private float initialJumpBoost = 4f;                // Value used to boost the initial jump value to give the jump a poppy feel
+    private float initialJumpBoost = 4.3f;              // Value used to boost the initial jump value to give the jump a poppy feel
     private float tempAirMoveSpeed;                     // Value used to hold the current calculated air horizontal move speed
     private float linearDrag;                           // Current linear drag of the player object
     private float jumpSpeed;                            // Current vertical movement speed of the player
