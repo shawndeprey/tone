@@ -43,7 +43,9 @@ public class GameManager : MonoBehaviour
             GameObject door = GameObject.Find(moveToDoorName);
             if(door != null){
                 GameObject player = GameObject.Find("Player");
+                GameObject camera = GameObject.Find("Main Camera");
                 player.transform.position = new Vector2(door.transform.position.x, door.transform.position.y);
+                camera.transform.position = new Vector2(door.transform.position.x, door.transform.position.y);
                 moveToDoorName = null;
             }
         }
