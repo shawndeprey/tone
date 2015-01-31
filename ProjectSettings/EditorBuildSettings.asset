@@ -13,3 +13,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Warehouse/01_warehouse.unity
   - enabled: 1
     path: Assets/Scenes/Warehouse/02_warehouse.unity
+  - enabled: 1
+    path: Assets/Scenes/Warehouse/03_warehouse.unity
+  - enabled: 1
+    path: Assets/Scenes/Warehouse/04_warehouse.unity
+  - enabled: 1
+    path: Assets/Scenes/Warehouse/05_warehouse.unity
