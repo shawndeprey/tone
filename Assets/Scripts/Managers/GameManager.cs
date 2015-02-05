@@ -4,8 +4,10 @@ using System.IO;
 
 public class GameManager : MonoBehaviour
 {
+    public bool isPausableScene { get { return Application.loadedLevelName != GameManager.Instance.mainMenuSceneName; } }
     public bool isPaused { get { return _isPaused; } }
     public int extraLives { get { return _extraLives; } }
+    public string mainMenuSceneName = "test_main_menu";
 
     private JSONClass saveData;
     private string savePath;

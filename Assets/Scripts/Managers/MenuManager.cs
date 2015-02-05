@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using System.Collections.Generic;
 
 public class MenuManager : MonoBehaviour
@@ -63,7 +64,15 @@ public class MenuManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Cancel"))
+        if (Input.GetButtonDown("Pause"))
+        {
+            MenuManager.Instance.Pause();
+        }
+    }
+
+    public void Pause()
+    {
+        if (GameManager.Instance.isPausableScene)
         {
             if (MenuManager.Instance.currentPanel.activeSelf)
             {
@@ -72,7 +81,7 @@ public class MenuManager : MonoBehaviour
             else
             {
                 GameManager.Instance.Pause();
-                MenuManager.Instance.SwitchMenu("Main Panel");
+                MenuManager.Instance.SwitchMenu("Pause Panel");
             }
         }
     }
@@ -104,6 +113,7 @@ public class MenuManager : MonoBehaviour
         currentPanel.SetActive(false);
         currentPanel = GetPanel(menu);
         currentPanel.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(currentPanel.GetComponent<UIPanel>().buttons[0]);
     }
 
     public void CloseAllMenus()
