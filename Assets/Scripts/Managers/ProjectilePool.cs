@@ -19,6 +19,7 @@ public class ProjectilePool : MonoBehaviour
         {
             _instance = this;
             DontDestroyOnLoad(gameObject);
+            Initialize();
         }
 
         if (_instance != null && _instance != this)
@@ -29,16 +30,13 @@ public class ProjectilePool : MonoBehaviour
         poolMax = poolMax != 0 && poolSize > poolMax ? poolSize : poolMax;
     }
 
-    void OnLevelWasLoaded(int level)
+    private void Initialize()
     {
-        if (level > 1)
-        {
-            poolTotal = 0;
-            pool = new List<GameObject>();
+        poolTotal = 0;
+        pool = new List<GameObject>();
 
-            // Create initial pool of objects
-            AddMoreToPool(poolSize);
-        }
+        // Create initial pool of objects
+        AddMoreToPool(poolSize);
     }
 
     public GameObject Create()

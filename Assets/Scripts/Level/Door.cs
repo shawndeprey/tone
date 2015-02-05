@@ -3,11 +3,15 @@ using System.Collections;
 
 public class Door : MonoBehaviour {
     public string sceneName;
+    public string doorName;
 
     void OnTriggerStay2D(Collider2D other)
     {
         if(other.gameObject.tag == "Player"){
-            Application.LoadLevel(sceneName);
+            if(Input.GetButton("Action")){
+                Application.LoadLevel(sceneName);
+                GameManager.Instance.SetMovingToDoor(doorName);
+            }
         }
     }
 }

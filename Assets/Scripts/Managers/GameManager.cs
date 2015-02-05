@@ -7,12 +7,13 @@ public class GameManager : MonoBehaviour
     public bool isPausableScene { get { return Application.loadedLevelName != GameManager.Instance.mainMenuSceneName; } }
     public bool isPaused { get { return _isPaused; } }
     public int extraLives { get { return _extraLives; } }
-    public string mainMenuSceneName = "test_main_menu";
+    public string mainMenuSceneName = "main_menu";
 
     private JSONClass saveData;
     private string savePath;
     private bool _isPaused = false;
     private int _extraLives = 3;
+    private string moveToDoorName = null;
 
     public static GameManager Instance { get { return _instance; } }
     private static GameManager _instance = null;
@@ -30,6 +31,19 @@ public class GameManager : MonoBehaviour
         }
 
         savePath = Application.persistentDataPath + "/";
+    }
+
+    void OnLevelWasLoaded(int level) {
+        if(moveToDoorName != null){
+            GameObject door = GameObject.Find(moveToDoorName);
+            if(door != null){
+                GameObject player = GameObject.Find("Player");
+                GameObject camera = GameObject.Find("Main Camera");
+                player.transform.position = new Vector2(door.transform.position.x, door.transform.position.y);
+                camera.transform.position = new Vector2(door.transform.position.x, door.transform.position.y);
+                moveToDoorName = null;
+            }
+        }
     }
 
     public void Pause()
@@ -160,5 +174,10 @@ public class GameManager : MonoBehaviour
         }
 
         return data;
+    }
+
+    public void SetMovingToDoor(string doorName)
+    {
+        moveToDoorName = doorName;
     }
 }

@@ -3,8 +3,12 @@
 public class Player : MonoBehaviour
 {
     public int health = 10;
-
     private int maxHealth = 10;
+
+    void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
 
     public void Damage(int amount)
     {
