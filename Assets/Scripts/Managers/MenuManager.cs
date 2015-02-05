@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using System.Collections.Generic;
 
 public class MenuManager : MonoBehaviour
 {
     public GameObject currentPanel { get { return _currentPanel; } set { _currentPanel = value; } }
     public List<GameObject> menuList;
+    public List<GameObject> newGameButtons, loadGameButtons;
 
     private GameObject _currentPanel;
     private Dictionary<string, GameObject> menuPanels;
@@ -35,6 +38,18 @@ public class MenuManager : MonoBehaviour
         }
 
         currentPanel = menuList[0];
+        if (Application.loadedLevel == 0)
+        {
+            SwitchMenu("Main Panel");
+        }
+    }
+
+    void Start()
+    {
+        if (Application.loadedLevel == 0)
+        {
+            GameManager.Instance.SetNewLoadGameButtons();
+        }
     }
 
     void OnLevelWasLoaded(int level)
@@ -49,7 +64,15 @@ public class MenuManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Cancel"))
+        if (Input.GetButtonDown("Pause"))
+        {
+            MenuManager.Instance.Pause();
+        }
+    }
+
+    public void Pause()
+    {
+        if (GameManager.Instance.isPausableScene)
         {
             if (MenuManager.Instance.currentPanel.activeSelf)
             {
@@ -58,7 +81,7 @@ public class MenuManager : MonoBehaviour
             else
             {
                 GameManager.Instance.Pause();
-                MenuManager.Instance.SwitchMenu("Main Panel");
+                MenuManager.Instance.SwitchMenu("Pause Panel");
             }
         }
     }
@@ -73,9 +96,16 @@ public class MenuManager : MonoBehaviour
         currentPanel = GetPanel(menu);
     }
 
-    public void StartGame()
+    public void StartNewGame(int gameSave)
     {
-        Application.LoadLevel(0);
+        GameManager.Instance.GenerateNewSaveFile(gameSave);
+
+        Application.LoadLevel(1);
+    }
+
+    public void LoadGame(int gameSave)
+    {
+        GameManager.Instance.LoadGame(gameSave);
     }
 
     public void SwitchMenu(string menu)
@@ -83,6 +113,7 @@ public class MenuManager : MonoBehaviour
         currentPanel.SetActive(false);
         currentPanel = GetPanel(menu);
         currentPanel.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(currentPanel.GetComponent<UIPanel>().buttons[0]);
     }
 
     public void CloseAllMenus()
@@ -123,5 +154,11 @@ public class MenuManager : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void SetNewLoadGameButton(int gameSave)
+    {
+        newGameButtons[gameSave - 1].GetComponent<Button>().interactable = false;
+        loadGameButtons[gameSave - 1].GetComponent<Button>().interactable = true;
     }
 }
