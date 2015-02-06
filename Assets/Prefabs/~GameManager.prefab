@@ -39,8 +39,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5a0d636f1761b347b5a907015749373, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainMenuSceneName: test_main_menu
+  mainMenuSceneName: main_menu
   player: {fileID: 0}
+  camera: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public int extraLives { get { return _extraLives; } }
     public string mainMenuSceneName = "main_menu";
     public GameObject player;
+    public GameObject camera;
 
     private JSONClass saveData;
     private string savePath;
@@ -22,6 +23,13 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        if (Application.loadedLevelName == mainMenuSceneName)
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+            player.SetActive(false);
+            Debug.Log("Test");
+        }
+
         if (_instance == null)
         {
             _instance = this;
@@ -39,6 +47,10 @@ public class GameManager : MonoBehaviour
     {
         if (level == 0)
         {
+            player = GameObject.FindGameObjectWithTag("Player");
+            player.SetActive(false);
+
+            camera = Camera.main.gameObject;
             Camera.main.GetComponent<CameraFollow>().enabled = false;
         }
         else
@@ -64,12 +76,11 @@ public class GameManager : MonoBehaviour
 
     public void ResetGame()
     {
-        _isPaused = false;
         MenuManager.Instance.CloseAllMenus();
-        Pause();
         MenuManager.Instance.SetPanel("Main Panel");
-
-        Application.LoadLevel(1);
+        Destroy(player);
+        Destroy(camera);
+        Application.LoadLevel(mainMenuSceneName);
     }
 
     public void RespawnPlayer()
