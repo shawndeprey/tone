@@ -19,7 +19,7 @@ public class Door : MonoBehaviour
     {
         if (!other.isTrigger && other.tag == "Player")
         {
-            if (Input.GetButtonDown("Action"))
+            if (Input.GetButton("Action"))
             {
                 GameManager.Instance.SetDoor(doorName);
                 Application.LoadLevel(sceneName);
