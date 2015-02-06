@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
 
@@ -158,7 +159,23 @@ public class MenuManager : MonoBehaviour
 
     public void SetNewLoadGameButton(int gameSave)
     {
-        newGameButtons[gameSave - 1].GetComponent<Button>().interactable = false;
+        newGameButtons[gameSave - 1].SetActive(false);
+        newGameButtons[gameSave - 1 + 3].SetActive(true);
         loadGameButtons[gameSave - 1].GetComponent<Button>().interactable = true;
+    }
+
+    public void SaveIndicator()
+    {
+        StartCoroutine(DisplaySaveIndicator(3f));
+    }
+
+    private IEnumerator DisplaySaveIndicator(float seconds)
+    {
+        GameObject indicator = GetPanel("Save Indicator Panel");
+        indicator.SetActive(true);
+        
+        yield return new WaitForSeconds(seconds);
+
+        indicator.SetActive(false);
     }
 }

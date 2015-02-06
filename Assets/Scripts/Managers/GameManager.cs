@@ -8,12 +8,14 @@ public class GameManager : MonoBehaviour
     public bool isPaused { get { return _isPaused; } }
     public int extraLives { get { return _extraLives; } }
     public string mainMenuSceneName = "main_menu";
+    public GameObject player;
 
     private JSONClass saveData;
     private string savePath;
     private bool _isPaused = false;
     private int _extraLives = 3;
-    private string moveToDoorName = null;
+    private string doorName = "";
+    private GameObject door;
 
     public static GameManager Instance { get { return _instance; } }
     private static GameManager _instance = null;
@@ -33,17 +35,26 @@ public class GameManager : MonoBehaviour
         savePath = Application.persistentDataPath + "/";
     }
 
-    void OnLevelWasLoaded(int level) {
-        if(moveToDoorName != null){
-            GameObject door = GameObject.Find(moveToDoorName);
-            if(door != null){
-                GameObject player = GameObject.Find("Player");
-                GameObject camera = GameObject.Find("Main Camera");
-                player.transform.position = new Vector2(door.transform.position.x, door.transform.position.y);
-                camera.transform.position = new Vector2(door.transform.position.x, door.transform.position.y);
-                moveToDoorName = null;
+    void OnLevelWasLoaded(int level)
+    {
+        if (level == 0)
+        {
+            Camera.main.GetComponent<CameraFollow>().enabled = false;
+        }
+        else
+        {
+            Camera.main.GetComponent<CameraFollow>().enabled = true;
+            if (doorName != "")
+            {
+                door = GameObject.Find(doorName);
+                player.transform.position = door.transform.position;
             }
         }
+    }
+
+    public void SetDoor(string doorName)
+    {
+        GameManager.Instance.doorName = doorName;
     }
 
     public void Pause()
@@ -74,8 +85,51 @@ public class GameManager : MonoBehaviour
         if (!File.Exists(savePath + fileName))
         {
             saveData = new JSONClass();
-            // Player Data
-            saveData["playerData"]["currentLevel"].AsInt = gameSave;
+            // Basic player data
+            saveData["playerData"]["positionX"].AsFloat = player.transform.position.x;
+            saveData["playerData"]["positionY"].AsFloat = player.transform.position.y;
+            saveData["playerData"]["maxHealth"].AsInt = player.GetComponent<Player>().maxHealth;
+            saveData["playerData"]["health"].AsInt = player.GetComponent<Player>().health;
+            saveData["playerData"]["currentLevel"].AsInt = 1;
+
+            // Weapons
+            saveData["playerData"]["equippedWeapon"] = "";
+            saveData["playerData"]["basicGun"].AsBool = false;
+            saveData["playerData"]["sprayGun"].AsBool = false;
+            saveData["playerData"]["machineGun"].AsBool = false;
+
+            // Ammo
+            saveData["playerData"]["equippedBulletType"] = "";
+            saveData["playerData"]["basicShot"].AsBool = false;
+            saveData["playerData"]["chargeShot"].AsBool = false;
+            saveData["playerData"]["boltShot"].AsBool = false;
+            saveData["playerData"]["rockBreaker"].AsBool = false;
+
+            // Items
+            saveData["playerData"]["equippedItem"] = "";
+            saveData["playerData"]["heatTolerance"].AsBool = false;
+            saveData["playerData"]["heatInsulator"].AsBool = false;
+            saveData["playerData"]["swimming"].AsBool = false;
+            saveData["playerData"]["lightEmitter"].AsBool = false;
+            saveData["playerData"]["booster"].AsBool = false;
+            saveData["playerData"]["mindUplink"].AsBool = false;
+
+            // Boss states
+            saveData["gameEvents"]["firstBoss"].AsBool = false;
+            saveData["gameEvents"]["secondBoss"].AsBool = false;
+            saveData["gameEvents"]["thirdBoss"].AsBool = false;
+            saveData["gameEvents"]["fourthBoss"].AsBool = false;
+
+            // NPC states
+            saveData["gameEvents"]["firstNPCScene"].AsBool = false;
+            saveData["gameEvents"]["secondNPCScene"].AsBool = false;
+            saveData["gameEvents"]["thirdNPCScene"].AsBool = false;
+            saveData["gameEvents"]["fourthNPCScene"].AsBool = false;
+
+            // Game stats
+            saveData["gameStats"]["currentScore"].AsInt = 0;
+            saveData["gameStats"]["enemiesKilled"].AsInt = 0;
+            saveData["gameStats"]["distanceTravelled"].AsFloat = 0.0f;
 
             // Graphics
             saveData["settings"]["graphics"]["fullscreen"].AsBool = true;
@@ -94,13 +148,71 @@ public class GameManager : MonoBehaviour
         {
             Debug.LogError("Save file: " + fileName + " already exists!");
         }
+
+        player.SetActive(true);
     }
 
     public void SaveGame(int gameSave)
     {
         string fileName = "saveData_" + gameSave.ToString() + ".tone";
         saveData = new JSONClass();
-        saveData["playerData"]["currentLevel"].AsInt = gameSave;
+
+        // Basic player data
+        saveData["playerData"]["positionX"].AsFloat = player.transform.position.x;
+        saveData["playerData"]["positionY"].AsFloat = player.transform.position.y;
+        saveData["playerData"]["maxHealth"].AsInt = player.GetComponent<Player>().maxHealth;
+        saveData["playerData"]["health"].AsInt = player.GetComponent<Player>().health;
+        saveData["playerData"]["currentLevel"].AsInt = Application.loadedLevel;
+
+        // Weapons
+        saveData["playerData"]["equippedWeapon"] = "";
+        saveData["playerData"]["basicGun"].AsBool = false;
+        saveData["playerData"]["sprayGun"].AsBool = false;
+        saveData["playerData"]["machineGun"].AsBool = false;
+
+        // Ammo
+        saveData["playerData"]["equippedBulletType"] = "";
+        saveData["playerData"]["basicShot"].AsBool = false;
+        saveData["playerData"]["chargeShot"].AsBool = false;
+        saveData["playerData"]["boltShot"].AsBool = false;
+        saveData["playerData"]["rockBreaker"].AsBool = false;
+
+        // Items
+        saveData["playerData"]["equippedItem"] = "";
+        saveData["playerData"]["heatTolerance"].AsBool = false;
+        saveData["playerData"]["heatInsulator"].AsBool = false;
+        saveData["playerData"]["swimming"].AsBool = false;
+        saveData["playerData"]["lightEmitter"].AsBool = false;
+        saveData["playerData"]["booster"].AsBool = false;
+        saveData["playerData"]["mindUplink"].AsBool = false;
+
+        // Boss states
+        saveData["gameEvents"]["firstBoss"].AsBool = false;
+        saveData["gameEvents"]["secondBoss"].AsBool = false;
+        saveData["gameEvents"]["thirdBoss"].AsBool = false;
+        saveData["gameEvents"]["fourthBoss"].AsBool = false;
+
+        // NPC states
+        saveData["gameEvents"]["firstNPCScene"].AsBool = false;
+        saveData["gameEvents"]["secondNPCScene"].AsBool = false;
+        saveData["gameEvents"]["thirdNPCScene"].AsBool = false;
+        saveData["gameEvents"]["fourthNPCScene"].AsBool = false;
+
+        // Game stats
+        saveData["gameStats"]["currentScore"].AsInt = 0;
+        saveData["gameStats"]["enemiesKilled"].AsInt = 0;
+        saveData["gameStats"]["distanceTravelled"].AsFloat = 0.0f;
+
+        // Graphics
+        saveData["settings"]["graphics"]["fullscreen"].AsBool = true;
+
+        // Audio
+        saveData["settings"]["audio"]["masterVolume"].AsFloat = 1f;
+        saveData["settings"]["audio"]["sfxVolume"].AsFloat = 1f;
+        saveData["settings"]["audio"]["bgmVolume"].AsFloat = 1f;
+
+        // Game Settings
+        saveData["settings"]["gameSettings"]["test"].AsInt = 1;
 
         SaveToFile(fileName);
     }
@@ -111,6 +223,14 @@ public class GameManager : MonoBehaviour
         saveData = (JSONClass)JSONNode.Parse(LoadFromFile(fileName));
         
         Application.LoadLevel(saveData["playerData"]["currentLevel"].AsInt);
+        player.SetActive(true);
+
+        float posX = saveData["playerData"]["positionX"].AsFloat;
+        float posY = saveData["playerData"]["positionY"].AsFloat;
+        
+        player.transform.position = new Vector3(posX, posY, 0);
+        player.GetComponent<Player>().SetMaxHealth(saveData["playerData"]["maxHealth"].AsInt);
+        player.GetComponent<Player>().health = saveData["playerData"]["health"].AsInt;
     }
 
     public void SaveSettings(int gameSave)
@@ -174,10 +294,5 @@ public class GameManager : MonoBehaviour
         }
 
         return data;
-    }
-
-    public void SetMovingToDoor(string doorName)
-    {
-        moveToDoorName = doorName;
     }
 }
