@@ -16,7 +16,7 @@ public class SpecialZone : MonoBehaviour
     {
         if (!other.isTrigger && other.tag == "Player")
         {
-            if (Input.GetButtonDown("Action"))
+            if (Input.GetButton("Action"))
             {
                 DoZoneAction();
             }

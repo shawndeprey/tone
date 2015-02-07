@@ -419,9 +419,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 733aa23512e6ede43b87f1bf8060b8a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvas: {fileID: 1527326377}
   sceneName: 04_warehouse
   doorName: 04_warehouse_door_2
-  canvas: {fileID: 1527326377}
 --- !u!61 &229898855
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4434,9 +4434,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 733aa23512e6ede43b87f1bf8060b8a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: 
-  doorName: 
   canvas: {fileID: 904273942}
+  sceneName: 01_lower_labs
+  doorName: 01_lower_labs_door_1
 --- !u!61 &1705356373
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4855,11 +4855,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11486182, guid: 8eba51ecca2009548a4364679d607451, type: 2}
       propertyPath: doorName
-      value: 
+      value: 01_lower_labs_door_1
       objectReference: {fileID: 0}
     - target: {fileID: 11486182, guid: 8eba51ecca2009548a4364679d607451, type: 2}
       propertyPath: sceneName
-      value: 
+      value: 01_lower_labs
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8eba51ecca2009548a4364679d607451, type: 2}
