@@ -6,6 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/main_menu.unity
+  - enabled: 1
     path: Assets/Scenes/Warehouse/01_warehouse.unity
   - enabled: 1
     path: Assets/Scenes/Warehouse/02_warehouse.unity
@@ -15,5 +17,3 @@ EditorBuildSettings:
     path: Assets/Scenes/Warehouse/04_warehouse.unity
   - enabled: 1
     path: Assets/Scenes/Warehouse/05_warehouse.unity
-  - enabled: 1
-    path: Assets/Scenes/sandbox_justin.unity

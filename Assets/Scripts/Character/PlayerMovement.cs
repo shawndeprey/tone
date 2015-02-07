@@ -55,10 +55,13 @@ public class PlayerMovement : MonoBehaviour
         float tempJump = Input.GetAxis("Jump");
 
         // Set the horizontal direction the player is currently facing
-        if(horizontal < 0){
+        if(horizontal < 0)
+        {
             hFacing = Direction.Left;
-        } else
-        if(horizontal > 0){
+        }
+        else
+        if(horizontal > 0)
+        {
             hFacing = Direction.Right;
         }
 
@@ -95,7 +98,6 @@ public class PlayerMovement : MonoBehaviour
             // If the user is not currently jumping then we can check the jump key
             if(!didJump)
             {
-
                 // If the jump key is being pressed then set the required values for a jump
                 if(tempJump != 0f)
                 {
@@ -111,15 +113,16 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             // If the player is falling we want to boost their fall speed by gradiantly controlling the linear drag of the player
-            if(falling){
-
+            if(falling)
+            {
                 // Basically the current linear drag is decreased by the fall acceleration to a minimum value, boosting terminal velocity
                 linearDrag = Mathf.Clamp(linearDrag - fallAcceleration, minLinearDrag, maxLinearDrag);
-            } else {
-
+            }
+            else
+            {
                 // If the player is not falling then check the states in which the player would logically be falling
-                if(tempJump == 0f || jumpHeight <= 0f){
-
+                if(tempJump == 0f || jumpHeight <= 0f)
+                {
                     // If the player should logically be falling, set that state to true so the linear drag can be modified
                     falling = true;
                 }
@@ -130,7 +133,6 @@ public class PlayerMovement : MonoBehaviour
             // previous frame then we shouldn't add any additional boost to the jump
             if(stillJumping && tempJump != 0f && jumpHeight > 0f)
             {
-
                 // Decrease the current vertical movement based on the jump deceleration amount.
                 jumpSpeed = Mathf.Clamp(jumpSpeed - jumpDeceleration, 0f, maxJumpSpeed);
 
@@ -150,8 +152,9 @@ public class PlayerMovement : MonoBehaviour
 
                 // Increase the amount of jump juice which will be removed from the jump gas tank in the next frame
                 jumpDeceleration += jumpDecelerationIncline;
-            } else {
-                
+            }
+            else
+            {    
                 // Reset jump values
                 vertical = 0f;
                 jumpHeight = maxJumpHeight;
@@ -166,13 +169,14 @@ public class PlayerMovement : MonoBehaviour
 
             // If the player is still facing the same direction as when they jumped then their move speed in the air
             // should remain normal. Otherwise the jump would feel slower than the run speed the instant the player jumped.
-            if(takeoffDirection == hFacing){
-
+            if(takeoffDirection == hFacing)
+            {
                 // Given the player doesn't have the friction of running on the ground we still need to slow down the player
                 // a bit which in the air in order to match the running speed on the ground.
                 horizontal = horizontal * tempAirMoveSpeed;
-            } else {
-
+            }
+            else
+            {
                 // If the player reversed their direction while in the air then ensure we change to a slower in-air horizontal
                 // move speed until the player touches the ground again. Changing the takeoff direction ensures that this happens.
                 takeoffDirection = Direction.Up;
@@ -215,10 +219,12 @@ public class PlayerMovement : MonoBehaviour
     void CalculateAndSetCurrentAnimation()
     {
         // Calculate the animation which should play based on the players current state
-        if(hFacing == Direction.Left){
+        if(hFacing == Direction.Left)
+        {
             currentAnimation = 0;
-        } else
-        if(hFacing == Direction.Right){
+        }
+        else if(hFacing == Direction.Right)
+        {
             currentAnimation = 1;
         }
 

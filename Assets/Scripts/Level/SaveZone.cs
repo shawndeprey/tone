@@ -1,12 +1,10 @@
 ﻿using UnityEngine;
 
-public class SaveZone : MonoBehaviour
+public class SaveZone : SpecialZone
 {
-    void OnTriggerEnter2D(Collider2D other)
+    protected override void DoZoneAction()
     {
-        if (!other.isTrigger && other.tag == "Player")
-        {
-            GameManager.Instance.SaveGame(1);
-        }
+        MenuManager.Instance.SaveIndicator();
+        GameManager.Instance.SaveGame(1);
     }
 }
