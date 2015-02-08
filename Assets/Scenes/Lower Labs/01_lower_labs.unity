@@ -890,8 +890,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 207084729}
-  sceneName: 
-  doorName: 
+  sceneName: 02_lower_labs
+  doorName: 02_lower_labs_door_1
 --- !u!61 &80445320
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7242,11 +7242,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11486182, guid: 8eba51ecca2009548a4364679d607451, type: 2}
       propertyPath: sceneName
-      value: 
+      value: 02_lower_labs
       objectReference: {fileID: 0}
     - target: {fileID: 11486182, guid: 8eba51ecca2009548a4364679d607451, type: 2}
       propertyPath: doorName
-      value: 
+      value: 02_lower_labs_door_1
       objectReference: {fileID: 0}
     - target: {fileID: 186182, guid: 8eba51ecca2009548a4364679d607451, type: 2}
       propertyPath: m_Name

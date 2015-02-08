@@ -19,3 +19,5 @@ EditorBuildSettings:
     path: Assets/Scenes/Warehouse/05_warehouse.unity
   - enabled: 1
     path: Assets/Scenes/Lower Labs/01_lower_labs.unity
+  - enabled: 1
+    path: Assets/Scenes/Lower Labs/02_lower_labs.unity
