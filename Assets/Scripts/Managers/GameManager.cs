@@ -42,17 +42,16 @@ public class GameManager : MonoBehaviour
     void OnLevelWasLoaded(int level)
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        camera = GameObject.FindGameObjectWithTag("MainCamera");
+        CameraFollow cameraFollow = camera.GetComponent<CameraFollow>();
+        RoomData roomData = GameObject.FindGameObjectWithTag("RoomData").GetComponent<RoomData>();
 
         if (level == 0)
         {
-            player.GetComponent<Disabler>().Disable();
-
-            camera = GameObject.FindGameObjectWithTag("MainCamera");
-            camera.GetComponent<CameraFollow>().enabled = false;
+            player.GetComponent<Disabler>().Disable();            
         }
         else
         {
-            camera.GetComponent<CameraFollow>().enabled = true;
             if (doorName != "")
             {
                 door = GameObject.Find(doorName);
@@ -65,8 +64,18 @@ public class GameManager : MonoBehaviour
             {
                 player.transform.position = new Vector3(0, 0, 0);
             }
+        }
 
-            camera.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, camera.transform.position.z);
+        if(roomData.isCameraStationary)
+        {
+            cameraFollow.enabled = true;
+            cameraFollow.SetPosition(roomData.cameraPosition);
+            cameraFollow.enabled = false;
+        }
+        else
+        {
+            cameraFollow.enabled = true;
+            cameraFollow.Initialize();
         }
     }
 
