@@ -102,9 +102,14 @@ public class MenuManager : MonoBehaviour
         GameManager.Instance.LoadGame(gameSave);
     }
 
+    public void ReloadGame()
+    {
+        GameManager.Instance.LoadGame(GameManager.Instance.gameSave);
+    }
+
     public void SwitchMenu(string menu)
     {
-        if(currentPanel != null)
+        if (currentPanel != null)
         {
             currentPanel.SetActive(false);
         }
@@ -142,11 +147,6 @@ public class MenuManager : MonoBehaviour
         {
             CloseAllMenus();
         }
-    }
-
-    public void Respawn()
-    {
-        GameManager.Instance.RespawnPlayer();
     }
 
     public void QuitToMainMenu()
@@ -206,7 +206,7 @@ public class MenuManager : MonoBehaviour
     {
         GameObject indicator = GetPanel("Save Indicator Panel");
         indicator.SetActive(true);
-        
+
         yield return new WaitForSeconds(seconds);
 
         indicator.SetActive(false);

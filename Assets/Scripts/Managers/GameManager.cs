@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public bool isPausableScene { get { return Application.loadedLevelName != GameManager.Instance.mainMenuSceneName; } }
     public bool isPaused { get { return _isPaused; } }
+    public int gameSave { get { return _gameSave; } }
 
     public string mainMenuSceneName = "main_menu";
     public GameObject playerPrefab;
@@ -16,6 +17,7 @@ public class GameManager : MonoBehaviour
     private JSONClass saveData;
     private string savePath;
     private bool _isPaused = false;
+    private int _gameSave;
     private string doorName = "";
     private GameObject door;
     private bool createOnce = true;
@@ -54,7 +56,7 @@ public class GameManager : MonoBehaviour
             if (doorName != "")
             {
                 door = GameObject.Find(doorName);
-                if(door != null)
+                if (door != null)
                 {
                     player.transform.position = door.transform.position;
                 }
@@ -84,6 +86,8 @@ public class GameManager : MonoBehaviour
 
     public void ResetGame()
     {
+        Pause();
+        Time.timeScale = 1f;
         doorName = "";
         Destroy(MenuManager.Instance.gameObject);
         Destroy(ProjectilePool.Instance.gameObject);
@@ -91,16 +95,13 @@ public class GameManager : MonoBehaviour
         Application.LoadLevel(mainMenuSceneName);
     }
 
-    public void RespawnPlayer()
-    {
-        Application.LoadLevel(Application.loadedLevel);
-    }
-
     // Saving and Loading stuff
-    public void GenerateNewSaveFile(int gameSave)
+    public void GenerateNewSaveFile(int gameSaveNum)
     {
+        _gameSave = gameSaveNum;
+
         // Creates the settings file if it doesn't exist yet
-        string fileName = "saveData_" + gameSave.ToString() + ".tone";
+        string fileName = "saveData_" + _gameSave.ToString() + ".tone";
         if (!File.Exists(savePath + fileName))
         {
             saveData = new JSONClass();
@@ -170,19 +171,19 @@ public class GameManager : MonoBehaviour
         player.GetComponent<Disabler>().Enable();
     }
 
-    public void DeleteGame(int gameSave)
+    public void DeleteGame(int gameSaveNum)
     {
-        string fileName = savePath + "saveData_" + gameSave.ToString() + ".tone";
+        string fileName = savePath + "saveData_" + gameSaveNum.ToString() + ".tone";
 
-        if(File.Exists(fileName))
+        if (File.Exists(fileName))
         {
             File.Delete(fileName);
         }
     }
 
-    public void SaveGame(int gameSave)
+    public void SaveGame()
     {
-        string fileName = "saveData_" + gameSave.ToString() + ".tone";
+        string fileName = "saveData_" + _gameSave.ToString() + ".tone";
         saveData = new JSONClass();
 
         // Basic player data
@@ -245,25 +246,28 @@ public class GameManager : MonoBehaviour
         SaveToFile(fileName);
     }
 
-    public void LoadGame(int gameSave)
+    public void LoadGame(int gameSaveNum)
     {
-        string fileName = "saveData_" + gameSave.ToString() + ".tone";
+        _gameSave = gameSaveNum;
+
+        string fileName = "saveData_" + gameSaveNum.ToString() + ".tone";
         saveData = (JSONClass)JSONNode.Parse(LoadFromFile(fileName));
-        
+
         Application.LoadLevel(saveData["playerData"]["currentLevel"].AsInt);
         player.GetComponent<Disabler>().Enable();
 
         float posX = saveData["playerData"]["positionX"].AsFloat;
         float posY = saveData["playerData"]["positionY"].AsFloat;
-        
+
         player.transform.position = new Vector3(posX, posY, 0);
         player.GetComponent<Player>().SetMaxHealth(saveData["playerData"]["maxHealth"].AsInt);
         player.GetComponent<Player>().health = saveData["playerData"]["health"].AsInt;
+        player.GetComponent<Disabler>().Enable();
     }
 
-    public void SaveSettings(int gameSave)
+    public void SaveSettings(int gameSaveNum)
     {
-        string fileName = "saveData_" + gameSave.ToString() + ".tone";
+        string fileName = "saveData_" + gameSaveNum.ToString() + ".tone";
         saveData = new JSONClass();
         // Graphics
         saveData["settings"]["graphics"]["fullscreen"].AsBool = true;
@@ -281,7 +285,7 @@ public class GameManager : MonoBehaviour
 
     public void SetNewLoadGameButtons()
     {
-        for(int i = 1; i < 4; i++)
+        for (int i = 1; i < 4; i++)
         {
             string fileName = "saveData_" + i + ".tone";
 
@@ -307,9 +311,9 @@ public class GameManager : MonoBehaviour
         savePath = Application.persistentDataPath + "/";
     }
 
-    private void LoadSettings(int gameSave)
+    private void LoadSettings(int gameSaveNum)
     {
-        string fileName = "saveData_" + gameSave.ToString() + ".tone";
+        string fileName = "saveData_" + gameSaveNum.ToString() + ".tone";
         saveData = (JSONClass)JSONNode.Parse(LoadFromFile(fileName));
         // TODO: Actually put the loaded data somewhere
         Debug.Log(saveData["settings"]["audio"]["masterVolume"].AsFloat);

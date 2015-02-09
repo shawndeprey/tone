@@ -5,6 +5,6 @@ public class SaveZone : SpecialZone
     protected override void DoZoneAction()
     {
         MenuManager.Instance.SaveIndicator();
-        GameManager.Instance.SaveGame(1);
+        GameManager.Instance.SaveGame();
     }
 }
