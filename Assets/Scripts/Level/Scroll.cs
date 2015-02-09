@@ -12,7 +12,7 @@ public class Scroll : MonoBehaviour
 
     void Start()
     {
-        sceneCamera = Camera.main;
+        sceneCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         lastCamPos = sceneCamera.transform.position;
     }
 

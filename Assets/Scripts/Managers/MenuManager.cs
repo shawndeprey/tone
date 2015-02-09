@@ -22,23 +22,13 @@ public class MenuManager : MonoBehaviour
         {
             _instance = this;
             DontDestroyOnLoad(gameObject);
+            Initialize();
         }
 
         if (_instance != null && _instance != this)
         {
             Destroy(gameObject);
         }
-
-        menuPanels = new Dictionary<string, GameObject>();
-
-        int length = menuList.Count;
-        for (int i = 0; i < length; i++)
-        {
-            menuList[i].SetActive(false);
-            menuPanels.Add(menuList[i].name, menuList[i]);
-        }
-
-        currentPanel = menuList[0];
     }
 
     void Start()
@@ -101,6 +91,12 @@ public class MenuManager : MonoBehaviour
         Application.LoadLevel(1);
     }
 
+    public void DeleteSaveGame(int gameSave)
+    {
+        GameManager.Instance.DeleteGame(gameSave);
+        GameManager.Instance.SetNewLoadGameButtons();
+    }
+
     public void LoadGame(int gameSave)
     {
         GameManager.Instance.LoadGame(gameSave);
@@ -108,10 +104,21 @@ public class MenuManager : MonoBehaviour
 
     public void SwitchMenu(string menu)
     {
-        currentPanel.SetActive(false);
+        if(currentPanel != null)
+        {
+            currentPanel.SetActive(false);
+        }
         currentPanel = GetPanel(menu);
         currentPanel.SetActive(true);
-        EventSystem.current.SetSelectedGameObject(currentPanel.GetComponent<UIPanel>().buttons[0]);
+
+        for (int i = 0; i < currentPanel.GetComponent<UIPanel>().buttons.Count; i++)
+        {
+            if (currentPanel.GetComponent<UIPanel>().buttons[i].activeSelf)
+            {
+                EventSystem.current.SetSelectedGameObject(currentPanel.GetComponent<UIPanel>().buttons[i]);
+                break;
+            }
+        }
     }
 
     public void CloseAllMenus()
@@ -149,16 +156,39 @@ public class MenuManager : MonoBehaviour
         Application.Quit();
     }
 
-    public void SetNewLoadGameButton(int gameSave)
+    public void SetNewLoadGameButton(int gameSave, bool exists)
     {
-        newGameButtons[gameSave - 1].SetActive(false);
-        newGameButtons[gameSave - 1 + 3].SetActive(true);
-        loadGameButtons[gameSave - 1].GetComponent<Button>().interactable = true;
+        newGameButtons[gameSave - 1].SetActive(!exists);
+        newGameButtons[gameSave - 1 + 3].SetActive(exists);
+        loadGameButtons[gameSave - 1].GetComponent<Button>().interactable = exists;
+
+        for (int i = 0; i < currentPanel.GetComponent<UIPanel>().buttons.Count; i++)
+        {
+            if (currentPanel.GetComponent<UIPanel>().buttons[i].activeSelf)
+            {
+                EventSystem.current.SetSelectedGameObject(currentPanel.GetComponent<UIPanel>().buttons[i]);
+                break;
+            }
+        }
     }
 
     public void SaveIndicator()
     {
         StartCoroutine(DisplaySaveIndicator(3f));
+    }
+
+    private void Initialize()
+    {
+        menuPanels = new Dictionary<string, GameObject>();
+
+        int length = menuList.Count;
+        for (int i = 0; i < length; i++)
+        {
+            menuList[i].SetActive(false);
+            menuPanels.Add(menuList[i].name, menuList[i]);
+        }
+
+        SwitchMenu("Main Panel");
     }
 
     private IEnumerator Unpause()
