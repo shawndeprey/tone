@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Elevator : MonoBehaviour {
+public class Elevator : MonoBehaviour
+{
     public bool isActive;
     public float speed;
     public float distance;
@@ -18,19 +19,34 @@ public class Elevator : MonoBehaviour {
 
     void FixedUpdate()
     {
-        if(!isActive){ return; }
-
-        if(direction){
-            if(transform.position == startPosition){
-                direction = false;
-            } else {
-                transform.position = Vector2.MoveTowards(transform.position, startPosition, speed);
+        if (!GameManager.Instance.isPaused)
+        {
+            if (!isActive)
+            {
+                return;
             }
-        } else {
-            if(transform.position == endPosition){
-                direction = true;
-            } else {
-                transform.position = Vector2.MoveTowards(transform.position, endPosition, speed);
+
+            if (direction)
+            {
+                if (transform.position == startPosition)
+                {
+                    direction = false;
+                }
+                else
+                {
+                    transform.position = Vector2.MoveTowards(transform.position, startPosition, speed);
+                }
+            }
+            else
+            {
+                if (transform.position == endPosition)
+                {
+                    direction = true;
+                }
+                else
+                {
+                    transform.position = Vector2.MoveTowards(transform.position, endPosition, speed);
+                }
             }
         }
     }

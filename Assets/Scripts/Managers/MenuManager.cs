@@ -39,16 +39,13 @@ public class MenuManager : MonoBehaviour
         }
 
         currentPanel = menuList[0];
-        if (Application.loadedLevel == 0)
-        {
-            SwitchMenu("Main Panel");
-        }
     }
 
     void Start()
     {
-        if (Application.loadedLevel == 0)
+        if (Application.loadedLevelName == GameManager.Instance.mainMenuSceneName)
         {
+            SwitchMenu("Main Panel");
             GameManager.Instance.SetNewLoadGameButtons();
         }
     }
@@ -56,7 +53,7 @@ public class MenuManager : MonoBehaviour
     void OnLevelWasLoaded(int level)
     {
         CloseAllMenus();
-        if (level == 0) // Main menu
+        if (Application.loadedLevelName == GameManager.Instance.mainMenuSceneName)
         {
             currentPanel = GetPanel("Main Panel");
             currentPanel.SetActive(true);
@@ -77,7 +74,7 @@ public class MenuManager : MonoBehaviour
         {
             if (MenuManager.Instance.currentPanel.activeSelf)
             {
-                MenuManager.Instance.CloseAllMenus();
+                StartCoroutine(Unpause());
             }
             else
             {
@@ -119,11 +116,6 @@ public class MenuManager : MonoBehaviour
 
     public void CloseAllMenus()
     {
-        if (GameManager.Instance.isPaused)
-        {
-            GameManager.Instance.Pause();
-        }
-
         foreach (KeyValuePair<string, GameObject> panel in menuPanels)
         {
             panel.Value.SetActive(false);
@@ -167,6 +159,14 @@ public class MenuManager : MonoBehaviour
     public void SaveIndicator()
     {
         StartCoroutine(DisplaySaveIndicator(3f));
+    }
+
+    private IEnumerator Unpause()
+    {
+        Time.timeScale = 1f;
+        yield return new WaitForSeconds(0.25f);
+        GameManager.Instance.Pause();
+        MenuManager.Instance.CloseAllMenus();
     }
 
     private IEnumerator DisplaySaveIndicator(float seconds)
