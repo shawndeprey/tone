@@ -7,9 +7,12 @@ public class Move : MonoBehaviour
 
     void Update()
     {
-        movement *= speed;
-        movement = Vector2.ClampMagnitude(movement, speed);
+        if (!GameManager.Instance.isPaused)
+        {
+            movement *= speed;
+            movement = Vector2.ClampMagnitude(movement, speed);
 
-        rigidbody2D.velocity = movement;
+            rigidbody2D.velocity = movement;
+        }
     }
 }

@@ -33,18 +33,24 @@ public class CameraFollow : MonoBehaviour
 
     void Update()
     {
-        horizontal = Input.GetAxis("Horizontal") * panDistance;
-        vertical = Input.GetAxis("Vertical") * panDistance;
+        if (!GameManager.Instance.isPaused)
+        {
+            horizontal = Input.GetAxis("Horizontal") * panDistance;
+            vertical = Input.GetAxis("Vertical") * panDistance;
+        }
     }
 
     void FixedUpdate()
     {
-        Vector2 newPos2D = Vector2.zero;
+        if (!GameManager.Instance.isPaused)
+        {
+            Vector2 newPos2D = Vector2.zero;
 
-        newPos2D.x = Mathf.SmoothDamp(transform.position.x, player.position.x + horizontal, ref velocity.x, smoothRate);
-        newPos2D.y = Mathf.SmoothDamp(transform.position.y, player.position.y + vertical, ref velocity.y, smoothRate);
+            newPos2D.x = Mathf.SmoothDamp(transform.position.x, player.position.x + horizontal, ref velocity.x, smoothRate);
+            newPos2D.y = Mathf.SmoothDamp(transform.position.y, player.position.y + vertical, ref velocity.y, smoothRate);
 
-        Vector3 newPos = new Vector3(newPos2D.x, newPos2D.y, transform.position.z);
-        transform.position = Vector3.Slerp(transform.position, newPos, Time.time);
+            Vector3 newPos = new Vector3(newPos2D.x, newPos2D.y, transform.position.z);
+            transform.position = Vector3.Slerp(transform.position, newPos, Time.time);
+        }
     }
 }

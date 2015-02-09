@@ -27,7 +27,6 @@ public class GameManager : MonoBehaviour
         {
             player = GameObject.FindGameObjectWithTag("Player");
             player.SetActive(false);
-            Debug.Log("Test");
         }
 
         if (_instance == null)
@@ -72,6 +71,10 @@ public class GameManager : MonoBehaviour
     public void Pause()
     {
         _isPaused = !_isPaused;
+        if (_isPaused)
+        {
+            Time.timeScale = 0f;
+        }
     }
 
     public void ResetGame()
