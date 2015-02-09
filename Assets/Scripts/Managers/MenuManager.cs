@@ -119,6 +119,8 @@ public class MenuManager : MonoBehaviour
                 break;
             }
         }
+
+        GameObject.Find("menuOverlay").renderer.enabled = true;
     }
 
     public void CloseAllMenus()
@@ -127,6 +129,7 @@ public class MenuManager : MonoBehaviour
         {
             panel.Value.SetActive(false);
         }
+        GameObject.Find("menuOverlay").renderer.enabled = false;
     }
 
     public void CloseOrSwitchToMain()
