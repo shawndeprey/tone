@@ -14146,6 +14146,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11479030, guid: 67234d94ecb64d346a3dee50ee699e45, type: 2}
+      propertyPath: levelName
+      value: Warehouse
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 67234d94ecb64d346a3dee50ee699e45, type: 2}
   m_RootGameObject: {fileID: 2135869906}
@@ -21491,9 +21495,10 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 2135869907}
+  - 114: {fileID: 2135869908}
   m_Layer: 0
   m_Name: Level
-  m_TagString: Untagged
+  m_TagString: RoomData
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21514,6 +21519,21 @@ Transform:
   - {fileID: 1541290354}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &2135869908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11479030, guid: 67234d94ecb64d346a3dee50ee699e45,
+    type: 2}
+  m_PrefabInternal: {fileID: 1450193044}
+  m_GameObject: {fileID: 2135869906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe89f66bb4d58c44ea0141bfc14f1666, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelName: Warehouse
+  isCameraStationary: 0
+  cameraPosition: {x: 0, y: 0}
 --- !u!1001 &2143281066
 Prefab:
   m_ObjectHideFlags: 0

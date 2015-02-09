@@ -7,17 +7,19 @@ public class GameManager : MonoBehaviour
     public bool isPausableScene { get { return Application.loadedLevelName != GameManager.Instance.mainMenuSceneName; } }
     public bool isPaused { get { return _isPaused; } }
     public int gameSave { get { return _gameSave; } }
+    public string currentSection { get { return _currentSection; } }
 
     public string mainMenuSceneName = "main_menu";
     public GameObject playerPrefab;
     public GameObject cameraPrefab;
 
     private GameObject player;
-    private GameObject camera;
+    private GameObject mainCamera;
     private JSONClass saveData;
     private string savePath;
     private bool _isPaused = false;
     private int _gameSave;
+    private string _currentSection = "";
     private string doorName = "";
     private GameObject door;
     private bool createOnce = true;
@@ -42,8 +44,8 @@ public class GameManager : MonoBehaviour
     void OnLevelWasLoaded(int level)
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        camera = GameObject.FindGameObjectWithTag("MainCamera");
-        CameraFollow cameraFollow = camera.GetComponent<CameraFollow>();
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        CameraFollow cameraFollow = mainCamera.GetComponent<CameraFollow>();
         RoomData roomData = GameObject.FindGameObjectWithTag("RoomData").GetComponent<RoomData>();
 
         if (level == 0)
@@ -76,6 +78,12 @@ public class GameManager : MonoBehaviour
         {
             cameraFollow.enabled = true;
             cameraFollow.Initialize();
+        }
+
+        if (_currentSection != roomData.levelName)
+        {
+            _currentSection = roomData.levelName;
+            MenuManager.Instance.RoomName(_currentSection);
         }
     }
 
@@ -308,7 +316,7 @@ public class GameManager : MonoBehaviour
         {
             createOnce = false;
             player = (GameObject)Instantiate(playerPrefab);
-            camera = (GameObject)Instantiate(cameraPrefab);
+            mainCamera = (GameObject)Instantiate(cameraPrefab);
         }
 
         if (Application.loadedLevelName == mainMenuSceneName)

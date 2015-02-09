@@ -20,7 +20,6 @@ public class CameraFollow : MonoBehaviour
         else
         {
             player = GameObject.FindGameObjectWithTag("Player").transform;
-            GameObject camera = GameObject.FindGameObjectWithTag("MainCamera");
         }
     }
 
