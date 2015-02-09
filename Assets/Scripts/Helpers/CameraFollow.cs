@@ -12,12 +12,14 @@ public class CameraFollow : MonoBehaviour
     {
         if(level == 0)
         {
-            Camera.main.transform.position = new Vector3(0, 0, Camera.main.transform.position.z);
+            GameObject camera = GameObject.FindGameObjectWithTag("MainCamera");
+            camera.transform.position = new Vector3(0, 0, camera.transform.position.z);
         }
         else
         {
             player = GameObject.FindGameObjectWithTag("Player").transform;
-            Camera.main.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, Camera.main.transform.position.z);
+            GameObject camera = GameObject.FindGameObjectWithTag("MainCamera");
+            camera.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, camera.transform.position.z);
         }
     }
 

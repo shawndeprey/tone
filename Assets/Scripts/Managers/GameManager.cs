@@ -6,60 +6,65 @@ public class GameManager : MonoBehaviour
 {
     public bool isPausableScene { get { return Application.loadedLevelName != GameManager.Instance.mainMenuSceneName; } }
     public bool isPaused { get { return _isPaused; } }
-    public int extraLives { get { return _extraLives; } }
-    public string mainMenuSceneName = "main_menu";
-    public GameObject player;
-    public GameObject camera;
 
+    public string mainMenuSceneName = "main_menu";
+    public GameObject playerPrefab;
+    public GameObject cameraPrefab;
+
+    private GameObject player;
+    private GameObject camera;
     private JSONClass saveData;
     private string savePath;
     private bool _isPaused = false;
-    private int _extraLives = 3;
     private string doorName = "";
     private GameObject door;
+    private bool createOnce = true;
 
     public static GameManager Instance { get { return _instance; } }
     private static GameManager _instance = null;
 
     void Awake()
     {
-        if (Application.loadedLevelName == mainMenuSceneName)
-        {
-            player = GameObject.FindGameObjectWithTag("Player");
-            player.SetActive(false);
-        }
-
         if (_instance == null)
         {
             _instance = this;
             DontDestroyOnLoad(gameObject);
+            Initialize();
         }
         else
         {
             Destroy(gameObject);
         }
-
-        savePath = Application.persistentDataPath + "/";
     }
 
     void OnLevelWasLoaded(int level)
     {
+        player = GameObject.FindGameObjectWithTag("Player");
+
         if (level == 0)
         {
-            player = GameObject.FindGameObjectWithTag("Player");
-            player.SetActive(false);
+            player.GetComponent<Disabler>().Disable();
 
-            camera = Camera.main.gameObject;
-            Camera.main.GetComponent<CameraFollow>().enabled = false;
+            camera = GameObject.FindGameObjectWithTag("MainCamera");
+            camera.GetComponent<CameraFollow>().enabled = false;
         }
         else
         {
-            Camera.main.GetComponent<CameraFollow>().enabled = true;
+            camera.GetComponent<CameraFollow>().enabled = true;
             if (doorName != "")
             {
                 door = GameObject.Find(doorName);
-                player.transform.position = door.transform.position;
+                if(door != null)
+                {
+                    player.transform.position = door.transform.position;
+                }
             }
+            else
+            {
+                player.transform.position = new Vector3(0, 0, 0);
+            }
+
+            camera.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, camera.transform.position.z);
         }
     }
 
@@ -79,10 +84,10 @@ public class GameManager : MonoBehaviour
 
     public void ResetGame()
     {
-        MenuManager.Instance.CloseAllMenus();
-        MenuManager.Instance.SetPanel("Main Panel");
-        Destroy(player);
-        Destroy(camera);
+        doorName = "";
+        Destroy(MenuManager.Instance.gameObject);
+        Destroy(ProjectilePool.Instance.gameObject);
+        player.GetComponent<Disabler>().Disable();
         Application.LoadLevel(mainMenuSceneName);
     }
 
@@ -162,8 +167,17 @@ public class GameManager : MonoBehaviour
         {
             Debug.LogError("Save file: " + fileName + " already exists!");
         }
+        player.GetComponent<Disabler>().Enable();
+    }
 
-        player.SetActive(true);
+    public void DeleteGame(int gameSave)
+    {
+        string fileName = savePath + "saveData_" + gameSave.ToString() + ".tone";
+
+        if(File.Exists(fileName))
+        {
+            File.Delete(fileName);
+        }
     }
 
     public void SaveGame(int gameSave)
@@ -237,7 +251,7 @@ public class GameManager : MonoBehaviour
         saveData = (JSONClass)JSONNode.Parse(LoadFromFile(fileName));
         
         Application.LoadLevel(saveData["playerData"]["currentLevel"].AsInt);
-        player.SetActive(true);
+        player.GetComponent<Disabler>().Enable();
 
         float posX = saveData["playerData"]["positionX"].AsFloat;
         float posY = saveData["playerData"]["positionY"].AsFloat;
@@ -270,11 +284,27 @@ public class GameManager : MonoBehaviour
         for(int i = 1; i < 4; i++)
         {
             string fileName = "saveData_" + i + ".tone";
-            if (File.Exists(savePath + fileName))
-            {
-                MenuManager.Instance.SetNewLoadGameButton(i);
-            }
+
+            MenuManager.Instance.SetNewLoadGameButton(i, File.Exists(savePath + fileName));
         }
+    }
+
+    private void Initialize()
+    {
+        if (createOnce)
+        {
+            createOnce = false;
+            player = (GameObject)Instantiate(playerPrefab);
+            camera = (GameObject)Instantiate(cameraPrefab);
+        }
+
+        if (Application.loadedLevelName == mainMenuSceneName)
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+            player.GetComponent<Disabler>().Disable();
+        }
+
+        savePath = Application.persistentDataPath + "/";
     }
 
     private void LoadSettings(int gameSave)

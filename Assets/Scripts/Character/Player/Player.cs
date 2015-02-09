@@ -56,7 +56,6 @@ public class Player : MonoBehaviour
     private void Death()
     {
         MenuManager.Instance.SwitchMenu("Game Over Panel");
-        Destroy(gameObject);
     }
 
     private void HitSequence()
@@ -66,7 +65,7 @@ public class Player : MonoBehaviour
         gameObject.rigidbody2D.velocity = force * 15;
     }
 
-    void OnCollisionEnter2D(Collision2D other)
+    void OnCollisionStay2D(Collision2D other)
     {
         if (!_invulnerable && other.gameObject.tag == "Enemy")
         {

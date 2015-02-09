@@ -40,8 +40,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainMenuSceneName: main_menu
-  player: {fileID: 0}
-  camera: {fileID: 0}
+  playerPrefab: {fileID: 164616, guid: 6110ea878be514f49b7786781c910889, type: 2}
+  cameraPrefab: {fileID: 103542, guid: 4b78bb7d7cdb866449ef03eb8ce524e0, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

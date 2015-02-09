@@ -13,6 +13,7 @@ GameObject:
   - 61: {fileID: 6151016}
   - 61: {fileID: 6151014}
   - 114: {fileID: 11415694}
+  - 114: {fileID: 11425280}
   m_Layer: 0
   m_Name: Wandering Spirit
   m_TagString: Enemy
@@ -80,10 +81,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db95f19e3ecefa940bee33a0485043da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2.5
-  damageAmount: 5
-  healthAmount: 5
-  maxHealthAmount: 5
+  speed: 2
+  damageAmount: 1
+  healthAmount: 2
+  maxHealthAmount: 2
+--- !u!114 &11425280
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 151016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7851b6d5c543d584499da1cec4a05112, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &21251016
 SpriteRenderer:
   m_ObjectHideFlags: 1
