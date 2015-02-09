@@ -177,7 +177,12 @@ public class MenuManager : MonoBehaviour
 
     public void SaveIndicator()
     {
-        StartCoroutine(DisplaySaveIndicator(3f));
+        StartCoroutine(DisplaySaveIndicator(1.75f));
+    }
+
+    public void RoomName(string roomName)
+    {
+        StartCoroutine(FadeRoomName());
     }
 
     private void Initialize()
@@ -210,5 +215,49 @@ public class MenuManager : MonoBehaviour
         yield return new WaitForSeconds(seconds);
 
         indicator.SetActive(false);
+    }
+
+    private IEnumerator FadeRoomName()
+    {
+        GameObject room = GetPanel("Room Name Panel");
+        GameObject text = room.transform.FindChild("Text").gameObject;
+
+        yield return new WaitForSeconds(0.25f);
+
+        Text roomText = text.GetComponent<Text>();
+        roomText.text = GameManager.Instance.currentSection;
+
+        Image panel = room.GetComponent<Image>();
+        float panelAlpha = panel.color.a;
+
+        roomText.color = new Color(roomText.color.r, roomText.color.g, roomText.color.b, 0f);
+        panel.color = new Color(panel.color.r, panel.color.g, panel.color.b, 0f);
+
+        room.SetActive(true);
+
+        //yield return new WaitForSeconds(1.75f);
+
+        // Fade in
+        for (float i = 1f; i <= 20f; i++)
+        {
+            yield return new WaitForEndOfFrame();
+            float alpha = Mathf.Lerp(roomText.color.a, 1f, Time.deltaTime * 10);
+            roomText.color = new Color(roomText.color.r, roomText.color.g, roomText.color.b, alpha);
+            panel.color = new Color(panel.color.r, panel.color.g, panel.color.b, panelAlpha * alpha);
+        }
+
+        yield return new WaitForSeconds(1.25f);
+
+        // Fade out
+        for (float i = 1f; i <= 20f; i++ )
+        {
+            yield return new WaitForEndOfFrame();
+            float alpha = Mathf.Lerp(roomText.color.a, 0f, Time.deltaTime * 10);
+            roomText.color = new Color(roomText.color.r, roomText.color.g, roomText.color.b, alpha);
+            panel.color = new Color(panel.color.r, panel.color.g, panel.color.b, panelAlpha * alpha);
+        }
+        room.SetActive(false);
+        roomText.color = new Color(roomText.color.r, roomText.color.g, roomText.color.b, 1f);
+        panel.color = new Color(panel.color.r, panel.color.g, panel.color.b, panelAlpha);
     }
 }

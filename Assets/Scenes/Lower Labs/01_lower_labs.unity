@@ -1993,9 +1993,10 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 197513702}
+  - 114: {fileID: 197513703}
   m_Layer: 0
   m_Name: Level
-  m_TagString: Untagged
+  m_TagString: RoomData
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2016,6 +2017,21 @@ Transform:
   - {fileID: 1119002900}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &197513703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11479030, guid: 67234d94ecb64d346a3dee50ee699e45,
+    type: 2}
+  m_PrefabInternal: {fileID: 1815802495}
+  m_GameObject: {fileID: 197513701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe89f66bb4d58c44ea0141bfc14f1666, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelName: Lower Labs
+  isCameraStationary: 0
+  cameraPosition: {x: 0, y: 0}
 --- !u!1 &199893013
 GameObject:
   m_ObjectHideFlags: 0
@@ -17495,6 +17511,10 @@ Prefab:
     - target: {fileID: 168076, guid: 67234d94ecb64d346a3dee50ee699e45, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11479030, guid: 67234d94ecb64d346a3dee50ee699e45, type: 2}
+      propertyPath: levelName
+      value: Lower Labs
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 67234d94ecb64d346a3dee50ee699e45, type: 2}

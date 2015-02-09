@@ -1160,6 +1160,7 @@ GameObject:
   - 61: {fileID: 121553149}
   - 61: {fileID: 121553148}
   - 114: {fileID: 121553147}
+  - 114: {fileID: 121553152}
   m_Layer: 0
   m_Name: Wandering Spirit
   m_TagString: Enemy
@@ -1191,10 +1192,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db95f19e3ecefa940bee33a0485043da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2.5
-  damageAmount: 5
-  healthAmount: 5
-  maxHealthAmount: 5
+  speed: 2
+  damageAmount: 1
+  healthAmount: 2
+  maxHealthAmount: 2
 --- !u!61 &121553148
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1258,6 +1259,18 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ecc80eef82df0784ea137c68f250c3e4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &121553152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11425280, guid: d8297849e66a11d4fb5c5b0863521715,
+    type: 2}
+  m_PrefabInternal: {fileID: 1803846206}
+  m_GameObject: {fileID: 121553145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7851b6d5c543d584499da1cec4a05112, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &124904091
 Prefab:
   m_ObjectHideFlags: 0
@@ -1600,6 +1613,7 @@ GameObject:
   - 61: {fileID: 147431878}
   - 61: {fileID: 147431877}
   - 114: {fileID: 147431876}
+  - 114: {fileID: 147431882}
   m_Layer: 0
   m_Name: Wandering Spirit
   m_TagString: Enemy
@@ -1619,10 +1633,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db95f19e3ecefa940bee33a0485043da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2.5
-  damageAmount: 5
-  healthAmount: 5
-  maxHealthAmount: 5
+  speed: 2
+  damageAmount: 1
+  healthAmount: 2
+  maxHealthAmount: 2
 --- !u!61 &147431877
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1698,6 +1712,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1460966205}
   m_RootOrder: 2
+--- !u!114 &147431882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11425280, guid: d8297849e66a11d4fb5c5b0863521715,
+    type: 2}
+  m_PrefabInternal: {fileID: 1200836221}
+  m_GameObject: {fileID: 147431875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7851b6d5c543d584499da1cec4a05112, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &150209197
 Prefab:
   m_ObjectHideFlags: 0
@@ -1857,6 +1883,7 @@ GameObject:
   - 61: {fileID: 170513574}
   - 61: {fileID: 170513573}
   - 114: {fileID: 170513572}
+  - 114: {fileID: 170513577}
   m_Layer: 0
   m_Name: Wandering Spirit
   m_TagString: Enemy
@@ -1888,10 +1915,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db95f19e3ecefa940bee33a0485043da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2.5
-  damageAmount: 5
-  healthAmount: 5
-  maxHealthAmount: 5
+  speed: 2
+  damageAmount: 1
+  healthAmount: 2
+  maxHealthAmount: 2
 --- !u!61 &170513573
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1955,6 +1982,18 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ecc80eef82df0784ea137c68f250c3e4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &170513577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11425280, guid: d8297849e66a11d4fb5c5b0863521715,
+    type: 2}
+  m_PrefabInternal: {fileID: 1374391842}
+  m_GameObject: {fileID: 170513570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7851b6d5c543d584499da1cec4a05112, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &171064017
 GameObject:
   m_ObjectHideFlags: 0
@@ -2732,6 +2771,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 11479030, guid: 67234d94ecb64d346a3dee50ee699e45, type: 2}
+      propertyPath: levelName
+      value: Warehouse
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 67234d94ecb64d346a3dee50ee699e45, type: 2}
   m_RootGameObject: {fileID: 1804499820}
@@ -3079,6 +3122,7 @@ GameObject:
   - 61: {fileID: 303495080}
   - 61: {fileID: 303495079}
   - 114: {fileID: 303495078}
+  - 114: {fileID: 303495083}
   m_Layer: 0
   m_Name: Wandering Spirit
   m_TagString: Enemy
@@ -3110,10 +3154,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db95f19e3ecefa940bee33a0485043da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2.5
-  damageAmount: 5
-  healthAmount: 5
-  maxHealthAmount: 5
+  speed: 2
+  damageAmount: 1
+  healthAmount: 2
+  maxHealthAmount: 2
 --- !u!61 &303495079
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3177,6 +3221,18 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ecc80eef82df0784ea137c68f250c3e4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &303495083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11425280, guid: d8297849e66a11d4fb5c5b0863521715,
+    type: 2}
+  m_PrefabInternal: {fileID: 1635635371}
+  m_GameObject: {fileID: 303495076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7851b6d5c543d584499da1cec4a05112, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &304769847
 GameObject:
   m_ObjectHideFlags: 0
@@ -6159,6 +6215,7 @@ GameObject:
   - 61: {fileID: 664174622}
   - 61: {fileID: 664174621}
   - 114: {fileID: 664174620}
+  - 114: {fileID: 664174625}
   m_Layer: 0
   m_Name: Wandering Spirit
   m_TagString: Enemy
@@ -6190,10 +6247,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db95f19e3ecefa940bee33a0485043da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2.5
-  damageAmount: 5
-  healthAmount: 5
-  maxHealthAmount: 5
+  speed: 2
+  damageAmount: 1
+  healthAmount: 2
+  maxHealthAmount: 2
 --- !u!61 &664174621
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6257,6 +6314,18 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ecc80eef82df0784ea137c68f250c3e4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &664174625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11425280, guid: d8297849e66a11d4fb5c5b0863521715,
+    type: 2}
+  m_PrefabInternal: {fileID: 386200642}
+  m_GameObject: {fileID: 664174618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7851b6d5c543d584499da1cec4a05112, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &667517826
 Prefab:
   m_ObjectHideFlags: 0
@@ -9892,6 +9961,7 @@ GameObject:
   - 61: {fileID: 1044221042}
   - 61: {fileID: 1044221041}
   - 114: {fileID: 1044221040}
+  - 114: {fileID: 1044221046}
   m_Layer: 0
   m_Name: Wandering Spirit
   m_TagString: Enemy
@@ -9911,10 +9981,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db95f19e3ecefa940bee33a0485043da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2.5
-  damageAmount: 5
-  healthAmount: 5
-  maxHealthAmount: 5
+  speed: 2
+  damageAmount: 1
+  healthAmount: 2
+  maxHealthAmount: 2
 --- !u!61 &1044221041
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9990,6 +10060,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1460966205}
   m_RootOrder: 1
+--- !u!114 &1044221046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11425280, guid: d8297849e66a11d4fb5c5b0863521715,
+    type: 2}
+  m_PrefabInternal: {fileID: 601912078}
+  m_GameObject: {fileID: 1044221039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7851b6d5c543d584499da1cec4a05112, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1047034029
 GameObject:
   m_ObjectHideFlags: 0
@@ -13449,6 +13531,7 @@ GameObject:
   - 61: {fileID: 1352605711}
   - 61: {fileID: 1352605710}
   - 114: {fileID: 1352605709}
+  - 114: {fileID: 1352605715}
   m_Layer: 0
   m_Name: Wandering Spirit
   m_TagString: Enemy
@@ -13468,10 +13551,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db95f19e3ecefa940bee33a0485043da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2.5
-  damageAmount: 5
-  healthAmount: 5
-  maxHealthAmount: 5
+  speed: 2
+  damageAmount: 1
+  healthAmount: 2
+  maxHealthAmount: 2
 --- !u!61 &1352605710
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13547,6 +13630,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1460966205}
   m_RootOrder: 0
+--- !u!114 &1352605715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11425280, guid: d8297849e66a11d4fb5c5b0863521715,
+    type: 2}
+  m_PrefabInternal: {fileID: 979362999}
+  m_GameObject: {fileID: 1352605708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7851b6d5c543d584499da1cec4a05112, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1362272301
 GameObject:
   m_ObjectHideFlags: 0
@@ -16270,7 +16365,7 @@ Transform:
   - {fileID: 1840820819}
   - {fileID: 1125047130}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!114 &1610881203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16640,6 +16735,7 @@ GameObject:
   - 61: {fileID: 1667154971}
   - 61: {fileID: 1667154970}
   - 114: {fileID: 1667154969}
+  - 114: {fileID: 1667154974}
   m_Layer: 0
   m_Name: Wandering Spirit
   m_TagString: Enemy
@@ -16671,10 +16767,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db95f19e3ecefa940bee33a0485043da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2.5
-  damageAmount: 5
-  healthAmount: 5
-  maxHealthAmount: 5
+  speed: 2
+  damageAmount: 1
+  healthAmount: 2
+  maxHealthAmount: 2
 --- !u!61 &1667154970
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -16738,6 +16834,18 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ecc80eef82df0784ea137c68f250c3e4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &1667154974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11425280, guid: d8297849e66a11d4fb5c5b0863521715,
+    type: 2}
+  m_PrefabInternal: {fileID: 1926005846}
+  m_GameObject: {fileID: 1667154967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7851b6d5c543d584499da1cec4a05112, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1670959627
 GameObject:
   m_ObjectHideFlags: 0
@@ -17913,9 +18021,10 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1804499821}
+  - 114: {fileID: 1804499822}
   m_Layer: 0
   m_Name: Level
-  m_TagString: Untagged
+  m_TagString: RoomData
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17935,7 +18044,22 @@ Transform:
   - {fileID: 1896195944}
   - {fileID: 1539706316}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 1
+--- !u!114 &1804499822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11479030, guid: 67234d94ecb64d346a3dee50ee699e45,
+    type: 2}
+  m_PrefabInternal: {fileID: 252701719}
+  m_GameObject: {fileID: 1804499820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe89f66bb4d58c44ea0141bfc14f1666, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelName: Warehouse
+  isCameraStationary: 0
+  cameraPosition: {x: 0, y: 0}
 --- !u!1 &1815237895
 GameObject:
   m_ObjectHideFlags: 0
@@ -19084,7 +19208,7 @@ Transform:
   - {fileID: 1482430425}
   - {fileID: 1608318140}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!1001 &1971341489
 Prefab:
   m_ObjectHideFlags: 0
@@ -20558,7 +20682,7 @@ Transform:
   - {fileID: 697394811}
   - {fileID: 775991303}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!1 &2093592272
 GameObject:
   m_ObjectHideFlags: 0

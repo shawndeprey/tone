@@ -1654,6 +1654,10 @@ Prefab:
       propertyPath: cameraPosition.y
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 11479030, guid: 67234d94ecb64d346a3dee50ee699e45, type: 2}
+      propertyPath: levelName
+      value: Warehouse
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 67234d94ecb64d346a3dee50ee699e45, type: 2}
   m_RootGameObject: {fileID: 618242954}
@@ -1703,6 +1707,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe89f66bb4d58c44ea0141bfc14f1666, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelName: Warehouse
   isCameraStationary: 1
   cameraPosition: {x: 2, y: 2}
 --- !u!1001 &621458213
