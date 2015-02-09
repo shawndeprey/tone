@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
         HitSequence();
 
         // Use 0 for insta-death
-        if(amount == 0)
+        if (amount == 0)
         {
             health = 0;
         }
@@ -56,6 +56,7 @@ public class Player : MonoBehaviour
     private void Death()
     {
         MenuManager.Instance.SwitchMenu("Game Over Panel");
+        gameObject.GetComponent<Disabler>().Disable();
     }
 
     private void HitSequence()
