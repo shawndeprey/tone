@@ -45,8 +45,13 @@ public class MenuManager : MonoBehaviour
         CloseAllMenus();
         if (Application.loadedLevelName == GameManager.Instance.mainMenuSceneName)
         {
+            gameObject.GetComponent<HealthDisplay>().healthPanel.SetActive(false);
             currentPanel = GetPanel("Main Panel");
             currentPanel.SetActive(true);
+        }
+        else
+        {
+            gameObject.GetComponent<HealthDisplay>().healthPanel.SetActive(true);
         }
     }
 
@@ -194,6 +199,15 @@ public class MenuManager : MonoBehaviour
         {
             menuList[i].SetActive(false);
             menuPanels.Add(menuList[i].name, menuList[i]);
+        }
+
+        if (Application.loadedLevelName == GameManager.Instance.mainMenuSceneName)
+        {
+            gameObject.GetComponent<HealthDisplay>().healthPanel.SetActive(false);
+        }
+        else
+        {
+            gameObject.GetComponent<HealthDisplay>().healthPanel.SetActive(true);
         }
 
         SwitchMenu("Main Panel");

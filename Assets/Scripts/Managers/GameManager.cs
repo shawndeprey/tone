@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour
             cameraFollow.Initialize();
         }
 
-        if (_currentSection != roomData.levelName)
+        if (_currentSection != "" && _currentSection != roomData.levelName)
         {
             _currentSection = roomData.levelName;
             MenuManager.Instance.RoomName(_currentSection);
