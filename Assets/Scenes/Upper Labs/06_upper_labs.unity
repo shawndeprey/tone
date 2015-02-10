@@ -469,7 +469,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe89f66bb4d58c44ea0141bfc14f1666, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelName: Lower Labs
+  levelName: Upper Labs
   isCameraStationary: 0
   cameraPosition: {x: 0, y: 0}
 --- !u!1 &673147859
@@ -888,7 +888,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11479030, guid: 67234d94ecb64d346a3dee50ee699e45, type: 2}
       propertyPath: levelName
-      value: Lower Labs
+      value: Upper Labs
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 67234d94ecb64d346a3dee50ee699e45, type: 2}
