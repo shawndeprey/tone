@@ -22,6 +22,11 @@ public class Player : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    void Start()
+    {
+        MenuManager.Instance.GetComponent<HealthDisplay>().SetHealth(_health, _maxHealth);
+    }
+
     public void Damage(int amount)
     {
         HitSequence();
@@ -41,11 +46,14 @@ public class Player : MonoBehaviour
             health = 0;
             Death();
         }
+
+        MenuManager.Instance.GetComponent<HealthDisplay>().SetHealth(_health, _maxHealth);
     }
 
     public void Heal(int amount)
     {
         health += amount;
+        MenuManager.Instance.GetComponent<HealthDisplay>().SetHealth(_health, _maxHealth);
     }
 
     public void SetMaxHealth(int amount)

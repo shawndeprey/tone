@@ -151,6 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe89f66bb4d58c44ea0141bfc14f1666, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelName: 
   isCameraStationary: 0
   cameraPosition: {x: 0, y: 0}
 --- !u!1001 &100100000
