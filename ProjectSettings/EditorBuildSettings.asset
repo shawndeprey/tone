@@ -27,3 +27,47 @@ EditorBuildSettings:
     path: Assets/Scenes/Lower Labs/04_lower_labs.unity
   - enabled: 1
     path: Assets/Scenes/Lower Labs/05_lower_labs.unity
+  - enabled: 1
+    path: Assets/Scenes/Lower Labs/06_lower_labs.unity
+  - enabled: 1
+    path: Assets/Scenes/Lower Labs/07_lower_labs.unity
+  - enabled: 1
+    path: Assets/Scenes/Lower Labs/08_lower_labs.unity
+  - enabled: 1
+    path: Assets/Scenes/Lower Labs/09_lower_labs.unity
+  - enabled: 1
+    path: Assets/Scenes/Lower Labs/010_lower_labs.unity
+  - enabled: 1
+    path: Assets/Scenes/Lower Labs/011_lower_labs.unity
+  - enabled: 1
+    path: Assets/Scenes/Lower Labs/012_lower_labs.unity
+  - enabled: 1
+    path: Assets/Scenes/Lower Labs/013_lower_labs.unity
+  - enabled: 1
+    path: Assets/Scenes/Upper Labs/01_upper_labs.unity
+  - enabled: 1
+    path: Assets/Scenes/Upper Labs/02_upper_labs.unity
+  - enabled: 1
+    path: Assets/Scenes/Upper Labs/03_upper_labs.unity
+  - enabled: 1
+    path: Assets/Scenes/Upper Labs/04_upper_labs.unity
+  - enabled: 1
+    path: Assets/Scenes/Upper Labs/05_upper_labs.unity
+  - enabled: 1
+    path: Assets/Scenes/Upper Labs/06_upper_labs.unity
+  - enabled: 1
+    path: Assets/Scenes/Upper Labs/07_upper_labs.unity
+  - enabled: 1
+    path: Assets/Scenes/Upper Labs/08_upper_labs.unity
+  - enabled: 1
+    path: Assets/Scenes/Upper Labs/09_upper_labs.unity
+  - enabled: 1
+    path: Assets/Scenes/Upper Labs/010_upper_labs.unity
+  - enabled: 1
+    path: Assets/Scenes/Upper Labs/011_upper_labs.unity
+  - enabled: 1
+    path: Assets/Scenes/Upper Labs/012_upper_labs.unity
+  - enabled: 1
+    path: Assets/Scenes/Upper Labs/013_upper_labs.unity
+  - enabled: 1
+    path: Assets/Scenes/Upper Labs/014_upper_labs.unity
