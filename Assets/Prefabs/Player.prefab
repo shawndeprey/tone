@@ -17,6 +17,7 @@ GameObject:
   - 114: {fileID: 11464616}
   - 114: {fileID: 11464618}
   - 114: {fileID: 11483746}
+  - 114: {fileID: 11460648}
   - 114: {fileID: 11486636}
   m_Layer: 0
   m_Name: Player
@@ -89,6 +90,18 @@ Animator:
   m_ApplyRootMotion: 0
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11460648
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 164616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a464606a8cd0150478a7d033b5347c41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shootCooldown: 0
 --- !u!114 &11464616
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -144,7 +157,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 647c15e19a262504eb0f7eeabf77cdac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 125782, guid: 9c96173642701c04a84495063af15124, type: 2}
   shootCooldown: 0
 --- !u!212 &21264616
 SpriteRenderer:

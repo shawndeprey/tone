@@ -46,12 +46,25 @@ public class MenuManager : MonoBehaviour
         if (Application.loadedLevelName == GameManager.Instance.mainMenuSceneName)
         {
             gameObject.GetComponent<HealthDisplay>().healthPanel.SetActive(false);
+
+            ItemDisplay[] itemDisplays = gameObject.GetComponents<ItemDisplay>();
+            for (int i = 0; i < itemDisplays.Length; i++)
+            {
+                itemDisplays[i].displayPanel.SetActive(false);
+            }
+
             currentPanel = GetPanel("Main Panel");
             currentPanel.SetActive(true);
         }
         else
         {
             gameObject.GetComponent<HealthDisplay>().healthPanel.SetActive(true);
+
+            ItemDisplay[] itemDisplays = gameObject.GetComponents<ItemDisplay>();
+            for (int i = 0; i < itemDisplays.Length; i++)
+            {
+                itemDisplays[i].displayPanel.SetActive(true);
+            }
         }
     }
 
@@ -190,6 +203,18 @@ public class MenuManager : MonoBehaviour
         StartCoroutine(FadeRoomName());
     }
 
+    public ItemDisplay GetWeaponDisplay()
+    {
+        ItemDisplay[] itemDisplays = gameObject.GetComponents<ItemDisplay>();
+        return itemDisplays[0];
+    }
+
+    public ItemDisplay GetItemDisplay()
+    {
+        ItemDisplay[] itemDisplays = gameObject.GetComponents<ItemDisplay>();
+        return itemDisplays[1];
+    }
+
     private void Initialize()
     {
         menuPanels = new Dictionary<string, GameObject>();
@@ -204,10 +229,22 @@ public class MenuManager : MonoBehaviour
         if (Application.loadedLevelName == GameManager.Instance.mainMenuSceneName)
         {
             gameObject.GetComponent<HealthDisplay>().healthPanel.SetActive(false);
+
+            ItemDisplay[] itemDisplays = gameObject.GetComponents<ItemDisplay>();
+            for (int i = 0; i < itemDisplays.Length; i++)
+            {
+                itemDisplays[i].displayPanel.SetActive(false);
+            }
         }
         else
         {
             gameObject.GetComponent<HealthDisplay>().healthPanel.SetActive(true);
+
+            ItemDisplay[] itemDisplays = gameObject.GetComponents<ItemDisplay>();
+            for (int i = 0; i < itemDisplays.Length; i++)
+            {
+                itemDisplays[i].displayPanel.SetActive(true);
+            }
         }
 
         SwitchMenu("Main Panel");
