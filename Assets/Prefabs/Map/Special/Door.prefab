@@ -189,9 +189,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 733aa23512e6ede43b87f1bf8060b8a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: 04_warehouse
-  doorName: 04_warehouse_door_2
   canvas: {fileID: 107390}
+  sceneName: 
+  doorName: 
 --- !u!212 &21286182
 SpriteRenderer:
   m_ObjectHideFlags: 1
