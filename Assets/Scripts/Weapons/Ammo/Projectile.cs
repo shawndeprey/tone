@@ -11,7 +11,10 @@ public abstract class Projectile : MonoBehaviour
     {
         if (_lifetime > 0f)
         {
-            ProjectilePool.Instance.Recycle(this.gameObject, _lifetime);
+            if (ProjectileManager.Instance != null)
+            {
+                ProjectileManager.Instance.Recycle(gameObject, _lifetime);
+            }
         }
     }
 }

@@ -107,7 +107,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         doorName = "";
         Destroy(MenuManager.Instance.gameObject);
-        Destroy(ProjectilePool.Instance.gameObject);
+        Destroy(ProjectileManager.Instance.gameObject);
         player.GetComponent<Disabler>().Disable();
         Application.LoadLevel(mainMenuSceneName);
     }

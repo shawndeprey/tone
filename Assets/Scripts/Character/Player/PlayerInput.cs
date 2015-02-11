@@ -1,15 +1,28 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class PlayerInput : MonoBehaviour
 {
-    public Vector2 lastDirection { get { return _lastDirection; } }
+    public Vector2 lastDirection { get { return _lastDirection; } set { _lastDirection = value; } }
 
-    private Weapon primaryWeapon;
     private Vector2 _lastDirection = new Vector2(1, 0);
+    private Weapon primaryWeapon;
+    private int currentWeaponIndex;
+    private List<Weapon> weapons;
 
     void Start()
     {
-        primaryWeapon = GetComponent<Weapon>();
+        weapons = new List<Weapon>();
+        Weapon[] tempWeapons = GetComponents<Weapon>();
+
+        weapons.Add(null);
+        for (int i = 0; i < tempWeapons.Length; i++)
+        {
+            weapons.Add(tempWeapons[i]);
+        }
+
+        currentWeaponIndex = 0;
+        EquipWeapon(currentWeaponIndex);
     }
 
 	void Update()
@@ -19,35 +32,34 @@ public class PlayerInput : MonoBehaviour
             float temp = Input.GetAxis("Horizontal");
             _lastDirection.x = temp < 0f ? -1f : temp > 0f ? 1f : _lastDirection.x;
 
-            if (Input.GetButton("Primary Shoot"))
+            if (primaryWeapon != null)
             {
-                if (primaryWeapon != null && primaryWeapon.CanAttack)
+                if (Input.GetButton("Primary Shoot"))
                 {
-                    Vector2 direction = Vector2.zero;
-                    direction.y = Input.GetAxis("Vertical");
-                    direction.y = direction.y < 0f ? -1f : direction.y > 0f ? 1f : 0f;
-
-                    if (direction.y == 0.0f)
-                    {
-                        direction.x = Input.GetAxis("Horizontal");
-                        direction.x = direction.x < 0f ? -1f : direction.x > 0f ? 1f : 0f;
-                        if (direction.x == 0.0f)
-                        {
-                            direction = _lastDirection;
-                        }
-                        else
-                        {
-                            _lastDirection.x = direction.x;
-                        }
-                    }
-
-                    primaryWeapon.Attack(direction);
+                    primaryWeapon.ShootPressed();
+                }
+                else if (Input.GetButtonUp("Primary Shoot"))
+                {
+                    primaryWeapon.ShootReleased();
                 }
             }
-            else if (Input.GetButtonUp("Primary Shoot"))
+
+            if (Input.GetButtonDown("Weapon Swap"))
             {
-                primaryWeapon.shootCooldown = 0f;
+                EquipNextWeapon();
             }
         }
+    }
+
+    public void EquipNextWeapon()
+    {
+        currentWeaponIndex = currentWeaponIndex >= weapons.Count - 1 ? 0 : currentWeaponIndex + 1;
+        EquipWeapon(currentWeaponIndex);
+    }
+
+    private void EquipWeapon(int weaponIndex)
+    {
+        primaryWeapon = weapons[weaponIndex];
+        MenuManager.Instance.GetWeaponDisplay().SetItem(weaponIndex);
     }
 }

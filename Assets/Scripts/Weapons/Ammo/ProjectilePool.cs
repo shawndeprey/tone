@@ -7,26 +7,13 @@ public class ProjectilePool : MonoBehaviour
     public int poolSize;
     public int poolMax = 0;
     public GameObject goPrefab;
-    public static ProjectilePool Instance { get { return _instance; } }
-
     public List<GameObject> pool;
+
     private int poolTotal = 0;
-    private static ProjectilePool _instance;
 
     void Awake()
     {
-        if (_instance == null)
-        {
-            _instance = this;
-            DontDestroyOnLoad(gameObject);
-            Initialize();
-        }
-
-        if (_instance != null && _instance != this)
-        {
-            Destroy(gameObject);
-        }
-
+        Initialize();
         poolMax = poolMax != 0 && poolSize > poolMax ? poolSize : poolMax;
     }
 

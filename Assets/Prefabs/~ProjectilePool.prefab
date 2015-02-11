@@ -1,5 +1,21 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &132474
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 432474}
+  - 114: {fileID: 11432474}
+  m_Layer: 0
+  m_Name: Basic Shot Pool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &142948
 GameObject:
   m_ObjectHideFlags: 0
@@ -16,6 +32,34 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &154120
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 454120}
+  - 114: {fileID: 11454120}
+  m_Layer: 0
+  m_Name: Charge Shot Pool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &432474
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 132474}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 442948}
+  m_RootOrder: 0
 --- !u!4 &442948
 Transform:
   m_ObjectHideFlags: 1
@@ -25,9 +69,38 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 432474}
+  - {fileID: 454120}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!4 &454120
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 154120}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 442948}
+  m_RootOrder: 1
+--- !u!114 &11432474
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 132474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d88829bd44c7a2d4ba6f0544b4d16721, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolSize: 50
+  poolMax: 0
+  goPrefab: {fileID: 125782, guid: 82bd5a94bb5732442954eedcec60c4cc, type: 2}
+  pool: []
 --- !u!114 &11442948
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -39,9 +112,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5b125649cf5b7342a73614ddee13b2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolSize: 25
+  pools:
+  - {fileID: 132474}
+  - {fileID: 154120}
+--- !u!114 &11454120
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 154120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d88829bd44c7a2d4ba6f0544b4d16721, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolSize: 50
   poolMax: 0
-  goPrefab: {fileID: 125782, guid: 4aa2d5cc07c96cf4399d441739710420, type: 2}
+  goPrefab: {fileID: 125782, guid: 9c96173642701c04a84495063af15124, type: 2}
   pool: []
 --- !u!1001 &100100000
 Prefab:
