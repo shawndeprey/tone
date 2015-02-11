@@ -48,7 +48,7 @@ public abstract class Enemy : MonoBehaviour
 
         if (projectile != null)
         {
-            ProjectilePool.Instance.Recycle(projectile.gameObject);
+            ProjectileManager.Instance.Recycle(projectile.gameObject);
             Damage(projectile.damage);
         }
     }

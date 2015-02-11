@@ -8,7 +8,7 @@ public class BoundsZone : MonoBehaviour
 
         if(projectile != null)
         {
-            ProjectilePool.Instance.Recycle(projectile.gameObject);
+            ProjectileManager.Instance.Recycle(projectile.gameObject);
         }
     }
 }

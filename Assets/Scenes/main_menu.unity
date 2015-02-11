@@ -6875,13 +6875,13 @@ CanvasRenderer:
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 142948, guid: 33de1b8ae2f9ffd47b5ef398aa71aca5, type: 2}
-  m_PrefabInternal: {fileID: 1990055631}
+  m_PrefabInternal: {fileID: 2017994345}
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1870334899}
   - 114: {fileID: 1870334898}
   m_Layer: 0
-  m_Name: ~ProjectilePool
+  m_Name: ~ProjectileManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6892,27 +6892,28 @@ MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 11442948, guid: 33de1b8ae2f9ffd47b5ef398aa71aca5,
     type: 2}
-  m_PrefabInternal: {fileID: 1990055631}
+  m_PrefabInternal: {fileID: 2017994345}
   m_GameObject: {fileID: 1870334897}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f5b125649cf5b7342a73614ddee13b2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolSize: 25
-  poolMax: 0
-  goPrefab: {fileID: 125782, guid: 4aa2d5cc07c96cf4399d441739710420, type: 2}
-  pool: []
+  pools:
+  - {fileID: 1904008543}
+  - {fileID: 2085147433}
 --- !u!4 &1870334899
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 442948, guid: 33de1b8ae2f9ffd47b5ef398aa71aca5, type: 2}
-  m_PrefabInternal: {fileID: 1990055631}
+  m_PrefabInternal: {fileID: 2017994345}
   m_GameObject: {fileID: 1870334897}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1904008545}
+  - {fileID: 2085147434}
   m_Father: {fileID: 0}
   m_RootOrder: 2
 --- !u!1 &1889808750
@@ -7340,6 +7341,50 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 343233859}
   m_GameObject: {fileID: 1900595940}
+--- !u!1 &1904008543
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 132474, guid: 33de1b8ae2f9ffd47b5ef398aa71aca5, type: 2}
+  m_PrefabInternal: {fileID: 2017994345}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1904008545}
+  - 114: {fileID: 1904008544}
+  m_Layer: 0
+  m_Name: Basic Shot Pool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1904008544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11432474, guid: 33de1b8ae2f9ffd47b5ef398aa71aca5,
+    type: 2}
+  m_PrefabInternal: {fileID: 2017994345}
+  m_GameObject: {fileID: 1904008543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d88829bd44c7a2d4ba6f0544b4d16721, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolSize: 50
+  poolMax: 0
+  goPrefab: {fileID: 125782, guid: 82bd5a94bb5732442954eedcec60c4cc, type: 2}
+  pool: []
+--- !u!4 &1904008545
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 432474, guid: 33de1b8ae2f9ffd47b5ef398aa71aca5, type: 2}
+  m_PrefabInternal: {fileID: 2017994345}
+  m_GameObject: {fileID: 1904008543}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1870334899}
+  m_RootOrder: 0
 --- !u!1 &1914136111
 GameObject:
   m_ObjectHideFlags: 0
@@ -7585,50 +7630,6 @@ Prefab:
   m_RootGameObject: {fileID: 137136484}
   m_IsPrefabParent: 0
   m_IsExploded: 1
---- !u!1001 &1990055631
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 442948, guid: 33de1b8ae2f9ffd47b5ef398aa71aca5, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 442948, guid: 33de1b8ae2f9ffd47b5ef398aa71aca5, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 442948, guid: 33de1b8ae2f9ffd47b5ef398aa71aca5, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 442948, guid: 33de1b8ae2f9ffd47b5ef398aa71aca5, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 442948, guid: 33de1b8ae2f9ffd47b5ef398aa71aca5, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 442948, guid: 33de1b8ae2f9ffd47b5ef398aa71aca5, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 442948, guid: 33de1b8ae2f9ffd47b5ef398aa71aca5, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 442948, guid: 33de1b8ae2f9ffd47b5ef398aa71aca5, type: 2}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 33de1b8ae2f9ffd47b5ef398aa71aca5, type: 2}
-  m_RootGameObject: {fileID: 1870334897}
-  m_IsPrefabParent: 0
-  m_IsExploded: 1
 --- !u!1 &2008920570
 GameObject:
   m_ObjectHideFlags: 0
@@ -7818,6 +7819,54 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 343233859}
   m_GameObject: {fileID: 2012517939}
+--- !u!1001 &2017994345
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 442948, guid: 33de1b8ae2f9ffd47b5ef398aa71aca5, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 442948, guid: 33de1b8ae2f9ffd47b5ef398aa71aca5, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 442948, guid: 33de1b8ae2f9ffd47b5ef398aa71aca5, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 442948, guid: 33de1b8ae2f9ffd47b5ef398aa71aca5, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 442948, guid: 33de1b8ae2f9ffd47b5ef398aa71aca5, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 442948, guid: 33de1b8ae2f9ffd47b5ef398aa71aca5, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 442948, guid: 33de1b8ae2f9ffd47b5ef398aa71aca5, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 442948, guid: 33de1b8ae2f9ffd47b5ef398aa71aca5, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 142948, guid: 33de1b8ae2f9ffd47b5ef398aa71aca5, type: 2}
+      propertyPath: m_Name
+      value: ~ProjectileManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 33de1b8ae2f9ffd47b5ef398aa71aca5, type: 2}
+  m_RootGameObject: {fileID: 1870334897}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
 --- !u!1 &2048891312
 GameObject:
   m_ObjectHideFlags: 0
@@ -7956,6 +8005,50 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 343233859}
   m_GameObject: {fileID: 2084476216}
+--- !u!1 &2085147433
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 154120, guid: 33de1b8ae2f9ffd47b5ef398aa71aca5, type: 2}
+  m_PrefabInternal: {fileID: 2017994345}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2085147434}
+  - 114: {fileID: 2085147435}
+  m_Layer: 0
+  m_Name: Charge Shot Pool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2085147434
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 454120, guid: 33de1b8ae2f9ffd47b5ef398aa71aca5, type: 2}
+  m_PrefabInternal: {fileID: 2017994345}
+  m_GameObject: {fileID: 2085147433}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1870334899}
+  m_RootOrder: 1
+--- !u!114 &2085147435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11454120, guid: 33de1b8ae2f9ffd47b5ef398aa71aca5,
+    type: 2}
+  m_PrefabInternal: {fileID: 2017994345}
+  m_GameObject: {fileID: 2085147433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d88829bd44c7a2d4ba6f0544b4d16721, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolSize: 50
+  poolMax: 0
+  goPrefab: {fileID: 125782, guid: 9c96173642701c04a84495063af15124, type: 2}
+  pool: []
 --- !u!1 &2087104520
 GameObject:
   m_ObjectHideFlags: 0
