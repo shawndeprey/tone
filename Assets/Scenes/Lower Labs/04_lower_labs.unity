@@ -9228,6 +9228,10 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: -5.5
       objectReference: {fileID: 0}
+    - target: {fileID: 186138, guid: f26885af3bbf6af4680f925890612a5f, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f26885af3bbf6af4680f925890612a5f, type: 2}
   m_RootGameObject: {fileID: 1972012434}
@@ -9674,11 +9678,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11486182, guid: 8eba51ecca2009548a4364679d607451, type: 2}
       propertyPath: sceneName
-      value: 
+      value: 011_lower_labs
       objectReference: {fileID: 0}
     - target: {fileID: 11486182, guid: 8eba51ecca2009548a4364679d607451, type: 2}
       propertyPath: doorName
-      value: 
+      value: 011_lower_labs_door_1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8eba51ecca2009548a4364679d607451, type: 2}
@@ -12686,8 +12690,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 921051755}
-  sceneName: 
-  doorName: 
+  sceneName: 011_lower_labs
+  doorName: 011_lower_labs_door_1
 --- !u!61 &1587538525
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -16446,6 +16450,10 @@ Prefab:
     - target: {fileID: 492720, guid: de4d8e977e6038248915bd86b70635bb, type: 2}
       propertyPath: m_LocalPosition.x
       value: -26
+      objectReference: {fileID: 0}
+    - target: {fileID: 192718, guid: de4d8e977e6038248915bd86b70635bb, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: de4d8e977e6038248915bd86b70635bb, type: 2}

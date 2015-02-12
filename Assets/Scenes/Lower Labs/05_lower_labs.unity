@@ -9193,8 +9193,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 2135642543}
-  sceneName: 
-  doorName: 
+  sceneName: 08_lower_labs
+  doorName: 08_lower_labs_door_1
 --- !u!61 &807544308
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11036,7 +11036,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 863586841}
   sceneName: 04_lower_labs
-  doorName: 04_lower_labs_door_5
+  doorName: 04_lower_labs_door_3
 --- !u!61 &949867897
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13232,7 +13232,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11486182, guid: 8eba51ecca2009548a4364679d607451, type: 2}
       propertyPath: doorName
-      value: 04_lower_labs_door_5
+      value: 04_lower_labs_door_3
       objectReference: {fileID: 0}
     - target: {fileID: 186182, guid: 8eba51ecca2009548a4364679d607451, type: 2}
       propertyPath: m_Name
@@ -15245,11 +15245,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11486182, guid: 8eba51ecca2009548a4364679d607451, type: 2}
       propertyPath: sceneName
-      value: 
+      value: 08_lower_labs
       objectReference: {fileID: 0}
     - target: {fileID: 11486182, guid: 8eba51ecca2009548a4364679d607451, type: 2}
       propertyPath: doorName
-      value: 
+      value: 08_lower_labs_door_1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8eba51ecca2009548a4364679d607451, type: 2}
@@ -17263,11 +17263,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11486182, guid: 8eba51ecca2009548a4364679d607451, type: 2}
       propertyPath: sceneName
-      value: 
+      value: 07_lower_labs
       objectReference: {fileID: 0}
     - target: {fileID: 11486182, guid: 8eba51ecca2009548a4364679d607451, type: 2}
       propertyPath: doorName
-      value: 
+      value: 07_lower_labs_door_1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8eba51ecca2009548a4364679d607451, type: 2}
@@ -18602,8 +18602,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 1768172439}
-  sceneName: 
-  doorName: 
+  sceneName: 07_lower_labs
+  doorName: 07_lower_labs_door_1
 --- !u!61 &1722087955
 BoxCollider2D:
   m_ObjectHideFlags: 0
