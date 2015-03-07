@@ -8898,11 +8898,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11486182, guid: 8eba51ecca2009548a4364679d607451, type: 2}
       propertyPath: doorName
-      value: 
+      value: 03_upper_labs_door_5
       objectReference: {fileID: 0}
     - target: {fileID: 11486182, guid: 8eba51ecca2009548a4364679d607451, type: 2}
       propertyPath: sceneName
-      value: 
+      value: 03_upper_labs
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8eba51ecca2009548a4364679d607451, type: 2}
@@ -9750,8 +9750,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 448179240}
-  sceneName: 
-  doorName: 
+  sceneName: 03_upper_labs
+  doorName: 03_upper_labs_door_5
 --- !u!61 &2086952722
 BoxCollider2D:
   m_ObjectHideFlags: 0
