@@ -12,7 +12,7 @@ public class Move : MonoBehaviour
             movement *= speed;
             movement = Vector2.ClampMagnitude(movement, speed);
 
-            rigidbody2D.velocity = movement;
+            GetComponent<Rigidbody2D>().velocity = movement;
         }
     }
 }

@@ -23,7 +23,7 @@ public class IdleState : FSMState
 
     public override void BehaviorLogicFixed(GameObject target)
     {
-        enemy.rigidbody2D.velocity = new Vector2(0, enemy.rigidbody2D.velocity.y);
+        enemy.GetComponent<Rigidbody2D>().velocity = new Vector2(0, enemy.GetComponent<Rigidbody2D>().velocity.y);
     }
 
     public override void BehaviorLogic(GameObject target)

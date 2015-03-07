@@ -52,7 +52,7 @@ public class WanderingSpirit : Enemy
     protected override void HitSequence()
     {
         Vector2 force = new Vector2(0, 1);
-        gameObject.rigidbody2D.velocity = force * 2.5f;
+        gameObject.GetComponent<Rigidbody2D>().velocity = force * 2.5f;
     }
 
     protected override void Death()

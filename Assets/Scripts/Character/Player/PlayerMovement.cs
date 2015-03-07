@@ -190,7 +190,7 @@ public class PlayerMovement : MonoBehaviour
             CalculateAndSetCurrentAnimation();
 
             // Set Linear Drag of the player to the current calculated linear drag
-            rigidbody2D.drag = linearDrag;
+            GetComponent<Rigidbody2D>().drag = linearDrag;
         }
     }
 
@@ -202,7 +202,7 @@ public class PlayerMovement : MonoBehaviour
             movement = new Vector2(horizontal * moveSpeed, vertical * jumpSpeed);
 
             // Apply that cardinal force to the players physics object for this frame
-            rigidbody2D.AddForce(movement, ForceMode2D.Impulse);
+            GetComponent<Rigidbody2D>().AddForce(movement, ForceMode2D.Impulse);
         }
     }
 

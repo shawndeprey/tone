@@ -71,14 +71,14 @@ public class Player : MonoBehaviour
     {
         StartCoroutine(FlashPlayer(5, 0.1f));
         Vector2 force = new Vector2(enemyDirection.x, 1);
-        gameObject.rigidbody2D.velocity = force * 15;
+        gameObject.GetComponent<Rigidbody2D>().velocity = force * 15;
     }
 
     void OnCollisionStay2D(Collision2D other)
     {
         if (!_invulnerable && other.gameObject.tag == "Enemy")
         {
-            enemyDirection = other.gameObject.rigidbody2D.velocity;
+            enemyDirection = other.gameObject.GetComponent<Rigidbody2D>().velocity;
             int damageAmount = other.gameObject.GetComponent<Enemy>().damage;
             Damage(damageAmount);
         }

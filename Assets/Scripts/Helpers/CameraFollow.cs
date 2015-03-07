@@ -68,16 +68,16 @@ public class CameraFollow : MonoBehaviour
         facingLeft = player.GetComponent<PlayerInput>().lastDirection.x < 0;
         if (facingLeft)
         {
-            camera.transform.position = new Vector3(player.position.x + -horizontalDistance, player.position.y, camera.transform.position.z);
+            GetComponent<Camera>().transform.position = new Vector3(player.position.x + -horizontalDistance, player.position.y, GetComponent<Camera>().transform.position.z);
         }
         else
         {
-            camera.transform.position = new Vector3(player.position.x + horizontalDistance, player.position.y, camera.transform.position.z);
+            GetComponent<Camera>().transform.position = new Vector3(player.position.x + horizontalDistance, player.position.y, GetComponent<Camera>().transform.position.z);
         }
     }
 
     public void SetPosition(Vector2 position)
     {
-        camera.transform.position = new Vector3(position.x, position.y, camera.transform.position.z);
+        GetComponent<Camera>().transform.position = new Vector3(position.x, position.y, GetComponent<Camera>().transform.position.z);
     }
 }

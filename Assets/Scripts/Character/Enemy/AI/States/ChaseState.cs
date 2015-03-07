@@ -28,11 +28,11 @@ public class ChaseState : FSMState
     {
         if (target.transform.position.x < enemy.transform.position.x)
         {
-            movement = new Vector2(-1 * enemy.speed, enemy.rigidbody2D.velocity.y);
+            movement = new Vector2(-1 * enemy.speed, enemy.GetComponent<Rigidbody2D>().velocity.y);
         }
         else if (target.transform.position.x > enemy.transform.position.x)
         {
-            movement = new Vector2(1 * enemy.speed, enemy.rigidbody2D.velocity.y);
+            movement = new Vector2(1 * enemy.speed, enemy.GetComponent<Rigidbody2D>().velocity.y);
         }
         else
         {
@@ -41,11 +41,11 @@ public class ChaseState : FSMState
 
         if (!GameManager.Instance.isPaused)
         {
-            enemy.rigidbody2D.velocity = movement;
+            enemy.GetComponent<Rigidbody2D>().velocity = movement;
         }
         else
         {
-            enemy.rigidbody2D.velocity = Vector2.zero;
+            enemy.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
     }
 

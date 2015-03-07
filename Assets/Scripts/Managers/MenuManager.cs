@@ -143,7 +143,7 @@ public class MenuManager : MonoBehaviour
             }
         }
 
-        GameObject.Find("menuOverlay").renderer.enabled = true;
+        GameObject.Find("menuOverlay").GetComponent<Renderer>().enabled = true;
     }
 
     public void CloseAllMenus()
@@ -152,7 +152,7 @@ public class MenuManager : MonoBehaviour
         {
             panel.Value.SetActive(false);
         }
-        GameObject.Find("menuOverlay").renderer.enabled = false;
+        GameObject.Find("menuOverlay").GetComponent<Renderer>().enabled = false;
     }
 
     public void CloseOrSwitchToMain()
