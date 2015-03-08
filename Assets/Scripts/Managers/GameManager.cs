@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using SimpleJSON;
 using System.IO;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class GameManager : MonoBehaviour
     public bool isPaused { get { return _isPaused; } }
     public int gameSave { get { return _gameSave; } }
     public string currentSection { get { return _currentSection; } }
+    public int equippedWeapon { get { return _equippedWeapon; } set { _equippedWeapon = value; } }
 
     public string mainMenuSceneName = "main_menu";
     public GameObject playerPrefab;
@@ -23,6 +25,13 @@ public class GameManager : MonoBehaviour
     private string doorName = "";
     private GameObject door;
     private bool createOnce = true;
+    private int _equippedWeapon;
+    private List<int> currentAmmo;
+    private List<int> maxAmmo;
+    private List<int> currentCharges;
+    private List<int> maxCharges;
+    private List<bool> unlockedWeapons;
+    private List<bool> unlockedItems;
 
     public static GameManager Instance { get { return _instance; } }
     private static GameManager _instance = null;
@@ -112,8 +121,55 @@ public class GameManager : MonoBehaviour
         Application.LoadLevel(mainMenuSceneName);
     }
 
+    public void NewGame(int gameSaveNum)
+    {
+        GenerateNewSaveFile(gameSaveNum);
+        SetGameData();
+    }
+
     // Saving and Loading stuff
-    public void GenerateNewSaveFile(int gameSaveNum)
+    private void SetGameData()
+    {
+        _equippedWeapon = saveData["playerData"]["equippedWeapon"].AsInt;
+
+        unlockedWeapons.Add(true);
+        unlockedWeapons.Add(saveData["playerData"]["basicGun"].AsBool);
+        unlockedWeapons.Add(saveData["playerData"]["chargeGun"].AsBool);
+
+        unlockedItems.Add(true);
+        unlockedItems.Add(saveData["playerData"]["heatTolerance"].AsBool);
+        unlockedItems.Add(saveData["playerData"]["heatInsulator"].AsBool);
+        unlockedItems.Add(saveData["playerData"]["swimming"].AsBool);
+        unlockedItems.Add(saveData["playerData"]["lightEmitter"].AsBool);
+        unlockedItems.Add(saveData["playerData"]["booster"].AsBool);
+        unlockedItems.Add(saveData["playerData"]["mindUplink"].AsBool);
+
+        currentAmmo.Add(0);
+        currentAmmo.Add(saveData["playerData"]["basicAmmo"].AsInt);
+        currentAmmo.Add(saveData["playerData"]["chargeAmmo"].AsInt);
+
+        maxAmmo.Add(0);
+        maxAmmo.Add(saveData["playerData"]["basicMax"].AsInt);
+        maxAmmo.Add(saveData["playerData"]["chargeMax"].AsInt);
+
+        currentCharges.Add(0);
+        currentCharges.Add(saveData["playerData"]["heatToleranceCharges"].AsInt);
+        currentCharges.Add(saveData["playerData"]["heatInsulatorCharges"].AsInt);
+        currentCharges.Add(saveData["playerData"]["swimmingCharges"].AsInt);
+        currentCharges.Add(saveData["playerData"]["lightEmitterCharges"].AsInt);
+        currentCharges.Add(saveData["playerData"]["boosterCharges"].AsInt);
+        currentCharges.Add(saveData["playerData"]["mindUplinkCharges"].AsInt);
+
+        maxCharges.Add(0);
+        maxCharges.Add(saveData["playerData"]["heatToleranceMax"].AsInt);
+        maxCharges.Add(saveData["playerData"]["heatInsulatorMax"].AsInt);
+        maxCharges.Add(saveData["playerData"]["swimmingMax"].AsInt);
+        maxCharges.Add(saveData["playerData"]["lightEmitterMax"].AsInt);
+        maxCharges.Add(saveData["playerData"]["boosterMax"].AsInt);
+        maxCharges.Add(saveData["playerData"]["mindUplinkMax"].AsInt);
+    }
+
+    private void GenerateNewSaveFile(int gameSaveNum)
     {
         _gameSave = gameSaveNum;
 
@@ -130,26 +186,38 @@ public class GameManager : MonoBehaviour
             saveData["playerData"]["currentLevel"].AsInt = 1;
 
             // Weapons
-            saveData["playerData"]["equippedWeapon"] = "";
-            saveData["playerData"]["basicGun"].AsBool = false;
-            saveData["playerData"]["sprayGun"].AsBool = false;
-            saveData["playerData"]["machineGun"].AsBool = false;
+            saveData["playerData"]["equippedWeapon"].AsInt = 0;
+            saveData["playerData"]["basicGun"].AsBool = true;
+            saveData["playerData"]["chargeGun"].AsBool = true;
 
             // Ammo
-            saveData["playerData"]["equippedBulletType"] = "";
-            saveData["playerData"]["basicShot"].AsBool = false;
-            saveData["playerData"]["chargeShot"].AsBool = false;
-            saveData["playerData"]["boltShot"].AsBool = false;
-            saveData["playerData"]["rockBreaker"].AsBool = false;
+            saveData["playerData"]["basicAmmo"].AsInt = 0;
+            saveData["playerData"]["basicMax"].AsInt = 0;
+            saveData["playerData"]["chargeAmmo"].AsInt = 3;
+            saveData["playerData"]["chargeMax"].AsInt = 3;
 
             // Items
-            saveData["playerData"]["equippedItem"] = "";
+            saveData["playerData"]["equippedItem"].AsInt = 0;
             saveData["playerData"]["heatTolerance"].AsBool = false;
             saveData["playerData"]["heatInsulator"].AsBool = false;
             saveData["playerData"]["swimming"].AsBool = false;
             saveData["playerData"]["lightEmitter"].AsBool = false;
             saveData["playerData"]["booster"].AsBool = false;
             saveData["playerData"]["mindUplink"].AsBool = false;
+
+            // Charges
+            saveData["playerData"]["heatToleranceCharges"].AsInt = 0;
+            saveData["playerData"]["heatToleranceMax"].AsInt = 0;
+            saveData["playerData"]["heatInsulatorCharges"].AsInt = 0;
+            saveData["playerData"]["heatInsulatorMax"].AsInt = 0;
+            saveData["playerData"]["swimmingCharges"].AsInt = 0;
+            saveData["playerData"]["swimmingMax"].AsInt = 0;
+            saveData["playerData"]["lightEmitterCharges"].AsInt = 0;
+            saveData["playerData"]["lightEmitterMax"].AsInt = 0;
+            saveData["playerData"]["boosterCharges"].AsInt = 0;
+            saveData["playerData"]["boosterMax"].AsInt = 0;
+            saveData["playerData"]["mindUplinkCharges"].AsInt = 0;
+            saveData["playerData"]["mindUplinkMax"].AsInt = 0;
 
             // Boss states
             saveData["gameEvents"]["firstBoss"].AsBool = false;
@@ -211,26 +279,38 @@ public class GameManager : MonoBehaviour
         saveData["playerData"]["currentLevel"].AsInt = Application.loadedLevel;
 
         // Weapons
-        saveData["playerData"]["equippedWeapon"] = "";
-        saveData["playerData"]["basicGun"].AsBool = false;
-        saveData["playerData"]["sprayGun"].AsBool = false;
-        saveData["playerData"]["machineGun"].AsBool = false;
+        saveData["playerData"]["equippedWeapon"].AsInt = _equippedWeapon;
+        saveData["playerData"]["basicGun"].AsBool = unlockedWeapons[1];
+        saveData["playerData"]["chargeGun"].AsBool = unlockedWeapons[2];
 
         // Ammo
-        saveData["playerData"]["equippedBulletType"] = "";
-        saveData["playerData"]["basicShot"].AsBool = false;
-        saveData["playerData"]["chargeShot"].AsBool = false;
-        saveData["playerData"]["boltShot"].AsBool = false;
-        saveData["playerData"]["rockBreaker"].AsBool = false;
+        saveData["playerData"]["basicAmmo"].AsInt = currentAmmo[1];
+        saveData["playerData"]["basicMax"].AsInt = maxAmmo[1];
+        saveData["playerData"]["chargeAmmo"].AsInt = currentAmmo[2];
+        saveData["playerData"]["chargeMax"].AsInt = maxAmmo[2];
 
         // Items
-        saveData["playerData"]["equippedItem"] = "";
-        saveData["playerData"]["heatTolerance"].AsBool = false;
-        saveData["playerData"]["heatInsulator"].AsBool = false;
-        saveData["playerData"]["swimming"].AsBool = false;
-        saveData["playerData"]["lightEmitter"].AsBool = false;
-        saveData["playerData"]["booster"].AsBool = false;
-        saveData["playerData"]["mindUplink"].AsBool = false;
+        saveData["playerData"]["equippedItem"].AsInt = 0;
+        saveData["playerData"]["heatTolerance"].AsBool = unlockedItems[1];
+        saveData["playerData"]["heatInsulator"].AsBool = unlockedItems[2];
+        saveData["playerData"]["swimming"].AsBool = unlockedItems[3];
+        saveData["playerData"]["lightEmitter"].AsBool = unlockedItems[4];
+        saveData["playerData"]["booster"].AsBool = unlockedItems[5];
+        saveData["playerData"]["mindUplink"].AsBool = unlockedItems[6];
+
+        // Charges
+        saveData["playerData"]["heatToleranceCharges"].AsInt = currentCharges[1];
+        saveData["playerData"]["heatToleranceMax"].AsInt = maxCharges[1];
+        saveData["playerData"]["heatInsulatorCharges"].AsInt = currentCharges[2];
+        saveData["playerData"]["heatInsulatorMax"].AsInt = maxCharges[2];
+        saveData["playerData"]["swimmingCharges"].AsInt = currentCharges[3];
+        saveData["playerData"]["swimmingMax"].AsInt = maxCharges[3];
+        saveData["playerData"]["lightEmitterCharges"].AsInt = currentCharges[4];
+        saveData["playerData"]["lightEmitterMax"].AsInt = maxCharges[4];
+        saveData["playerData"]["boosterCharges"].AsInt = currentCharges[5];
+        saveData["playerData"]["boosterMax"].AsInt = maxCharges[5];
+        saveData["playerData"]["mindUplinkCharges"].AsInt = currentCharges[6];
+        saveData["playerData"]["mindUplinkMax"].AsInt = maxCharges[6];
 
         // Boss states
         saveData["gameEvents"]["firstBoss"].AsBool = false;
@@ -280,6 +360,8 @@ public class GameManager : MonoBehaviour
         player.GetComponent<Player>().SetMaxHealth(saveData["playerData"]["maxHealth"].AsInt);
         player.GetComponent<Player>().health = saveData["playerData"]["health"].AsInt;
         player.GetComponent<Disabler>().Enable();
+
+        SetGameData();
     }
 
     public void SaveSettings(int gameSaveNum)
@@ -310,8 +392,55 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public int GetCurrentAmmo(int weaponIndex)
+    {
+        return currentAmmo[weaponIndex];
+    }
+
+    public int GetMaxAmmo(int weaponIndex)
+    {
+        return maxAmmo[weaponIndex];
+    }
+
+    public void SetCurrentAmmo(int weaponIndex, int amount)
+    {
+        currentAmmo[weaponIndex] = amount;
+    }
+
+    public void SetMaxAmmo(int weaponIndex, int amount)
+    {
+        maxAmmo[weaponIndex] = amount;
+    }
+
+    public int GetCurrentCharges(int itemIndex)
+    {
+        return currentCharges[itemIndex];
+    }
+
+    public int GetMaxCharges(int itemIndex)
+    {
+        return maxCharges[itemIndex];
+    }
+
+    public void SetCurrentCharges(int itemIndex, int amount)
+    {
+        currentCharges[itemIndex] = amount;
+    }
+
+    public void SetMaxCharges(int itemIndex, int amount)
+    {
+        maxCharges[itemIndex] = amount;
+    }
+
     private void Initialize()
     {
+        currentAmmo = new List<int>();
+        maxAmmo = new List<int>();
+        currentCharges = new List<int>();
+        maxCharges = new List<int>();
+        unlockedWeapons = new List<bool>();
+        unlockedItems = new List<bool>();
+
         if (createOnce)
         {
             createOnce = false;

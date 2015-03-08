@@ -21,7 +21,7 @@ public class PlayerInput : MonoBehaviour
             weapons.Add(tempWeapons[i]);
         }
 
-        currentWeaponIndex = 0;
+        currentWeaponIndex = GameManager.Instance.equippedWeapon;
         EquipWeapon(currentWeaponIndex);
     }
 
@@ -54,12 +54,16 @@ public class PlayerInput : MonoBehaviour
     public void EquipNextWeapon()
     {
         currentWeaponIndex = currentWeaponIndex >= weapons.Count - 1 ? 0 : currentWeaponIndex + 1;
+        GameManager.Instance.equippedWeapon = currentWeaponIndex;
         EquipWeapon(currentWeaponIndex);
     }
 
-    private void EquipWeapon(int weaponIndex)
+    public void EquipWeapon(int weaponIndex)
     {
         primaryWeapon = weapons[weaponIndex];
-        MenuManager.Instance.GetWeaponDisplay().SetItem(weaponIndex);
+
+        int count = GameManager.Instance.GetCurrentAmmo(weaponIndex);
+        int max = GameManager.Instance.GetMaxAmmo(weaponIndex);
+        MenuManager.Instance.GetWeaponDisplay().SetItem(weaponIndex, count, max);
     }
 }

@@ -104,7 +104,7 @@ public class MenuManager : MonoBehaviour
 
     public void StartNewGame(int gameSave)
     {
-        GameManager.Instance.GenerateNewSaveFile(gameSave);
+        GameManager.Instance.NewGame(gameSave);
 
         Application.LoadLevel(1);
     }

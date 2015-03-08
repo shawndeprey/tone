@@ -16,13 +16,14 @@ public class ChargeGun : Weapon
 
     public override void Attack(Vector2 direction)
     {
-        if (CanAttack)
+        int weaponIndex = GameManager.Instance.equippedWeapon;
+
+        if (CanAttack && GameManager.Instance.GetCurrentAmmo(weaponIndex) > 0)
         {
             shootCooldown = fireRate;
             if (!fireHeld)
             {
                 fireHeld = true;
-                NormalShot(direction);
             }
 
             if (!charging)
@@ -36,6 +37,11 @@ public class ChargeGun : Weapon
             {
                 ChargeShot(direction);
                 charging = false;
+
+                int count = GameManager.Instance.GetCurrentAmmo(weaponIndex);
+                GameManager.Instance.SetCurrentAmmo(weaponIndex, count - 1);
+                int max = GameManager.Instance.GetMaxAmmo(weaponIndex);
+                MenuManager.Instance.GetWeaponDisplay().SetItemCount(count - 1, max);
             }
         }
     }
@@ -69,20 +75,6 @@ public class ChargeGun : Weapon
         fireCharge = false;
         fireHeld = false;
         shootCooldown = 0f;
-    }
-
-    private void NormalShot(Vector2 direction)
-    {
-        GameObject projectileObject = ProjectileManager.Instance.GetPool(0).Create(transform.position + new Vector3(direction.x / 2f, direction.y / 2f, 0f));
-        if (projectileObject == null)
-        {
-            return;
-        }
-
-        Move move = projectileObject.GetComponent<Move>();
-        move.movement = direction;
-
-        projectileObject.SetActive(true);
     }
 
     private void ChargeShot(Vector2 direction)
