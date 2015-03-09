@@ -73,3 +73,19 @@ EditorBuildSettings:
     path: Assets/Scenes/Upper Labs/014_upper_labs.unity
   - enabled: 1
     path: Assets/Scenes/Upper Labs/015_upper_labs.unity
+  - enabled: 1
+    path: Assets/Scenes/Magma Caves/01_magma_caves.unity
+  - enabled: 1
+    path: Assets/Scenes/Magma Caves/02_magma_caves.unity
+  - enabled: 1
+    path: Assets/Scenes/Magma Caves/03_magma_caves.unity
+  - enabled: 1
+    path: Assets/Scenes/Magma Caves/04_magma_caves.unity
+  - enabled: 1
+    path: Assets/Scenes/Magma Caves/05_magma_caves.unity
+  - enabled: 1
+    path: Assets/Scenes/Magma Caves/06_magma_caves.unity
+  - enabled: 1
+    path: Assets/Scenes/Magma Caves/07_magma_caves.unity
+  - enabled: 1
+    path: Assets/Scenes/Magma Caves/08_magma_caves.unity
