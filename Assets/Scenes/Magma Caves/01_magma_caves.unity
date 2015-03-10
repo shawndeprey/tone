@@ -1339,6 +1339,14 @@ Prefab:
       propertyPath: m_Name
       value: 01_magma_caves_door_2
       objectReference: {fileID: 0}
+    - target: {fileID: 11486182, guid: 8eba51ecca2009548a4364679d607451, type: 2}
+      propertyPath: doorName
+      value: 02_magma_caves_door_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11486182, guid: 8eba51ecca2009548a4364679d607451, type: 2}
+      propertyPath: sceneName
+      value: 02_magma_caves
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8eba51ecca2009548a4364679d607451, type: 2}
   m_IsPrefabParent: 0
