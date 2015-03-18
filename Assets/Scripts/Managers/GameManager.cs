@@ -127,6 +127,10 @@ public class GameManager : MonoBehaviour
         SetGameData();
     }
 
+    void Update()
+    {
+        Debug.Log(player.transform.position);
+    }
     // Saving and Loading stuff
     private void SetGameData()
     {
