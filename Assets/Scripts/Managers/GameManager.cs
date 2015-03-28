@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public int gameSave { get { return _gameSave; } }
     public string currentSection { get { return _currentSection; } }
     public int equippedWeapon { get { return _equippedWeapon; } set { _equippedWeapon = value; } }
+    public int equippedItem { get { return _equippedItem; } set { _equippedItem = value; } }
 
     public string mainMenuSceneName = "main_menu";
     public GameObject playerPrefab;
@@ -28,6 +29,7 @@ public class GameManager : MonoBehaviour
     private int _equippedWeapon;
     private List<int> currentAmmo;
     private List<int> maxAmmo;
+    private int _equippedItem;
     private List<int> currentCharges;
     private List<int> maxCharges;
     private List<bool> unlockedWeapons;
@@ -127,10 +129,6 @@ public class GameManager : MonoBehaviour
         SetGameData();
     }
 
-    void Update()
-    {
-        Debug.Log(player.transform.position);
-    }
     // Saving and Loading stuff
     private void SetGameData()
     {
@@ -205,7 +203,7 @@ public class GameManager : MonoBehaviour
             saveData["playerData"]["heatTolerance"].AsBool = false;
             saveData["playerData"]["heatInsulator"].AsBool = false;
             saveData["playerData"]["swimming"].AsBool = false;
-            saveData["playerData"]["lightEmitter"].AsBool = false;
+            saveData["playerData"]["lightEmitter"].AsBool = true;
             saveData["playerData"]["booster"].AsBool = false;
             saveData["playerData"]["mindUplink"].AsBool = false;
 
@@ -217,7 +215,7 @@ public class GameManager : MonoBehaviour
             saveData["playerData"]["swimmingCharges"].AsInt = 0;
             saveData["playerData"]["swimmingMax"].AsInt = 0;
             saveData["playerData"]["lightEmitterCharges"].AsInt = 0;
-            saveData["playerData"]["lightEmitterMax"].AsInt = 0;
+            saveData["playerData"]["lightEmitterMax"].AsInt = 100;
             saveData["playerData"]["boosterCharges"].AsInt = 0;
             saveData["playerData"]["boosterMax"].AsInt = 0;
             saveData["playerData"]["mindUplinkCharges"].AsInt = 0;
