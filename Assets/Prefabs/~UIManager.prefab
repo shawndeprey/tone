@@ -5408,6 +5408,7 @@ MonoBehaviour:
   itemCount: {fileID: 11439648}
   itemSprites:
   - {fileID: 21300000, guid: f68e0c9fdb9a7154f897dfa26d62fe41, type: 3}
+  - {fileID: 21300000, guid: 83ae1ce3b72b97d498d991bdcb8cfb56, type: 3}
 --- !u!222 &22208220
 CanvasRenderer:
   m_ObjectHideFlags: 1

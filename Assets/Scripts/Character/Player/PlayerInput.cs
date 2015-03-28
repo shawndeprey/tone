@@ -9,6 +9,9 @@ public class PlayerInput : MonoBehaviour
     private Weapon primaryWeapon;
     private int currentWeaponIndex;
     private List<Weapon> weapons;
+    private Item primaryItem;
+    private int currentItemIndex;
+    private List<Item> items;
 
     void Start()
     {
@@ -23,6 +26,20 @@ public class PlayerInput : MonoBehaviour
 
         currentWeaponIndex = GameManager.Instance.equippedWeapon;
         EquipWeapon(currentWeaponIndex);
+
+
+
+        items = new List<Item>();
+        Item[] tempItems = GetComponents<Item>();
+
+        items.Add(null);
+        for (int i = 0; i < tempItems.Length; i++)
+        {
+            items.Add(tempItems[i]);
+        }
+
+        currentItemIndex = GameManager.Instance.equippedItem;
+        EquipItem(currentItemIndex);
     }
 
 	void Update()
@@ -48,6 +65,23 @@ public class PlayerInput : MonoBehaviour
             {
                 EquipNextWeapon();
             }
+
+            if (primaryItem != null)
+            {
+                if (Input.GetButton("Use Item"))
+                {
+                    primaryItem.UsePressed();
+                }
+                else if (Input.GetButtonUp("Use Item"))
+                {
+                    primaryItem.UseReleased();
+                }
+            }
+
+            if (Input.GetButtonDown("Item Swap"))
+            {
+                EquipNextItem();
+            }
         }
     }
 
@@ -65,5 +99,22 @@ public class PlayerInput : MonoBehaviour
         int count = GameManager.Instance.GetCurrentAmmo(weaponIndex);
         int max = GameManager.Instance.GetMaxAmmo(weaponIndex);
         MenuManager.Instance.GetWeaponDisplay().SetItem(weaponIndex, count, max);
+    }
+
+    public void EquipNextItem()
+    {
+        currentItemIndex = currentItemIndex >= items.Count - 1 ? 0 : currentItemIndex + 1;
+        GameManager.Instance.equippedItem = currentItemIndex;
+        EquipItem(currentItemIndex);
+    }
+
+    public void EquipItem(int itemIndex)
+    {
+        primaryItem = items[itemIndex];
+
+        int count = GameManager.Instance.GetCurrentCharges(itemIndex);
+        int max = GameManager.Instance.GetMaxCharges(itemIndex);
+        MenuManager.Instance.GetItemDisplay().SetItem(itemIndex, count, max);
+        Debug.Log(itemIndex);
     }
 }
